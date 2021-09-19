@@ -1,0 +1,238 @@
+<?php
+namespace App\Http\Controllers\Vendor;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\vendor\ProductRequest;
+use App\Models\Product;
+use App\Models\SubCategory;
+use App\Models\MainCategory;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use DB;
+use Auth;
+use Illuminate\Support\Str;
+class ProductController extends Controller
+{
+    public function index(){
+
+        $subcategories=SubCategory::selection()->get();
+
+        $products=Product::selection()->where('vendor_id',Auth::guard('vendor')->user()-> id)->get();
+        return view('vendor.product.index',compact('products','subcategories'));
+    }
+
+public function create(){
+    $subcategories=SubCategory::selection()->get();
+    return view("vendor.product.create",compact('subcategories'));
+}
+
+
+
+public function store(ProductRequest $request)
+{
+    try {
+
+
+
+        if($request->hasfile('photo'))
+        {
+
+            foreach($request->file('photo') as $image)
+            {
+
+                $name=$image->getClientOriginalName();
+                $file_name ="images/Product/".time().$name;
+                $path = "assets/images/".'Product';
+                $image-> move($path,$file_name);
+
+
+
+                $name_photo[]= $file_name;
+
+
+
+ }
+
+ $photo=implode(',',$name_photo);
+
+
+
+        }
+
+
+
+
+
+ $Product = Product::create([
+    'title' => $request->title,
+    'active' => $request->active,
+    'photo' => $photo,
+    'description' => $request->description,
+    'price' => $request->price,
+    'stock' => $request->stock,
+    'discount' => $request->discount,
+    'category_id' => $request->category_id,
+    'vendor_id' => $request->vendor_id,
+
+]);
+
+
+
+
+
+        if (!$request->has('active'))
+            $request->request->add(['active' => 0]);
+        else
+            $request->request->add(['active' => 1]);
+
+
+
+
+
+
+
+
+        return redirect()->route('vendor.Product')->with(['success' => 'تم الحفظ بنجاح']);
+
+    } catch (\Exception $ex) {
+        return $ex;
+        return redirect()->route('vendor.Product')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+
+    }
+}
+
+public function edit($id)
+{
+
+        $subcategories=SubCategory::selection()->active()->get();
+
+        $product = Product::selection()->find($id);
+        if (!$product)
+            return redirect()->route('vendor.Product')->with(['error' => 'هذا  المنتج غير موجود او ربما يكون محذوفا ']);
+
+
+
+        return view('vendor.product.edit', compact('product', 'subcategories'));
+
+
+        return redirect()->route('vendor.Product')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+
+}
+
+
+public function update($id,ProductRequest $request)
+    {
+
+        try {
+
+            $Product = Product::selection()->find($id);
+            if (!$Product)
+            return redirect()->route('vendor.Product')->with(['error' => 'هذا  المنتج غير موجود او ربما يكون محذوفا ']);
+
+
+            DB::beginTransaction();
+            //photo
+
+
+            if($request->hasfile('photo'))
+            {
+
+                foreach($request->file('photo') as $image)
+                {
+
+                    $name=$image->getClientOriginalName();
+                    $file_name ="images/Product/".time().$name;
+                    $path = "assets/images/".'Product';
+                    $image-> move($path,$file_name);
+
+
+
+                    $name_photo[]= $file_name;
+
+
+
+     }
+
+     $photo=implode(',',$name_photo);
+     Product::where('id', $id)
+     ->update([
+     'photo' => $photo
+     ]);
+            }
+
+
+
+            if (!$request->has('active'))
+                $request->request->add(['active' => 0]);
+            else
+                $request->request->add(['active' => 1]);
+
+             $data = $request->except('_token', 'id', 'photo');
+
+
+
+
+            Product::where('id', $id)
+                ->update([
+
+            'title' => $request->title,
+            'active' => $request->active,
+            'description' => $request->description,
+            'price' => $request->price,
+            'stock' => $request->stock,
+            'discount' => $request->discount,
+            'category_id' => $request->category_id,
+
+                ]
+                );
+
+            DB::commit();
+            return redirect()->route('vendor.Product')->with(['success' => 'تم التحديث بنجاح']);
+        } catch (\Exception $exception) {
+            return $exception;
+            DB::rollback();
+            return redirect()->route('vendor.Product')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
+
+    }
+
+
+public function changeStatus($id){
+    $Product = Product::selection()->find($id);
+            if (!$Product)
+            return redirect()->route('vendor.Product')->with(['error' => 'هذا  المنتج غير موجود او ربما يكون محذوفا ']);
+
+
+
+                $active = $Product->active;
+   if ($active==1){
+    $Product->update([
+        'active' => "0",
+    ]);
+    }else{
+        $Product->update([
+                        'active' => "1",
+                    ]);
+    }
+    return redirect()->route('vendor.Product');
+
+}
+
+
+public function destroy($id){
+
+    $Product = Product::selection()->find($id);
+            if (!$Product)
+            return redirect()->route('vendor.Product')->with(['error' => 'هذا  المنتج غير موجود او ربما يكون محذوفا ']);
+
+
+            $Product->delete($id);
+
+        return redirect()->route('vendor.Product')->with(['success' => 'تم الحذف بنجاح']);
+
+
+}
+
+
+}
+?>
