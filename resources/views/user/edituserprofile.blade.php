@@ -53,7 +53,7 @@ font-family: 'Lateef', serif;
 
 
       <div class="text-center  ">
-        <img class="avatr rounded-circle img-responsive  h-100px w-100px"  style="max-width:29%" src="http://localhost/e-commerce/assets/{{ Auth::user()->photo }}" alt="avatar">
+        <img class="avatr rounded-circle img-responsive  h-100px w-100px"  style="max-width:29%" src="http://localhost/E-commerce/assets/{{ Auth::user()->photo }}" alt="avatar">
 
 
       </div></hr><br>
@@ -66,6 +66,7 @@ font-family: 'Lateef', serif;
             <li class="list-group-item text-right"><span class="pull-left"><strong>البريد الالكتروني :  &nbsp</strong></span> {{ Auth::user()->email}} </li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>رقم الهاتف :  &nbsp</strong></span> {{ Auth::user()->mobile}} </li>
             <li class="list-group-item text-right"><span class="pull-left"><strong> الجنس :  &nbsp</strong></span> {{ Auth::user()->gender}} </li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong> المدينة :  &nbsp</strong></span> {{ Auth::user()->city}} </li>
           </ul>
 
 
@@ -147,6 +148,84 @@ font-family: 'Lateef', serif;
                <span class="text-danger">{{$message}}</span>
                @enderror
                       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      <div class="col-xs-6 offset-3">
+                        <label for="city"><h4 class="text-light input"> المدينة الحالية </h4></label>
+                        <br>
+                        <select name="city"  class="form-control" value="{{ Auth::user()->city}}" style="border-radius:9px; font-size:13px;  height: 45px">
+                            <optgroup label="من فضلك أختر المدينة ">
+
+                     @if(Auth::user()->city ==  'الخرطوم' )  selected @endif
+                            >الخرطوم</option>
+                            <option  @if(Auth::user()->city == 'امدرمان'  )  selected @endif
+                            >امدرمان</option>
+                            <option  @if(Auth::user()->city ==  'كسلا' )  selected @endif
+                            >كسلا</option>
+                            <option  @if(Auth::user()->city ==  'بورتسودان' )  selected @endif
+                            >بورتسودان </option>
+                            <option  @if(Auth::user()->city ==  'القضارف' )  selected @endif
+                            >القضارف</option>
+                            <option  @if(Auth::user()->city ==  'الدمازين' )  selected @endif
+                            >الدمازين </option>
+                            <option  @if(Auth::user()->city ==  'كوستي' )  selected @endif
+                            >كوستي </option>
+                            <option  @if(Auth::user()->city ==  'خرطوم بحري' )  selected @endif
+                            >خرطوم بحري </option>
+                            <option  @if(Auth::user()->city ==  'عطبرة' )  selected @endif
+                            >عطبرة</option>
+                            <option  @if(Auth::user()->city ==  'دنقلا' )  selected @endif
+                            >دنقلا</option>
+                            <option  @if(Auth::user()->city ==  'كادوقلي' )  selected @endif
+                            >كادوقلي</option>
+                            <option  @if(Auth::user()->city ==  'الابيض' )  selected @endif
+                            >الابيض</option>
+                            <option  @if(Auth::user()->city ==  'الفولة' )  selected @endif
+                            >الفولة</option>
+                            <option  @if(Auth::user()->city ==  'الفاشر' )  selected @endif
+                            >الفاشر</option>
+                            <option  @if(Auth::user()->city ==  'نيالا' )  selected @endif
+                            >نيالا</option>
+                            <option  @if(Auth::user()->city ==  'الجنينة' )  selected @endif
+                            >الجنينة</option>
+                            <option  @if(Auth::user()->city == 'زالنجي'  )  selected @endif
+                            >زالنجي</option>
+                            <option  @if(Auth::user()->city == 'الضعين'  )  selected @endif
+                            >الضعين</option>
+                        </select>
+                        <label for="city" class="col-form-label error m-0 text-danger text-md-right bold"></label>
+                    </div>
+                    @error('city')
+         <span class="text-danger">{{$message}}</span>
+         @enderror
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

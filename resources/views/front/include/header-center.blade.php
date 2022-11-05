@@ -12,7 +12,11 @@
     @endguest
 
 
-    ">Makarim ALakhlag</a></b>
+    "><div class="p-1">
+        <img src="{{asset('assets/admin/images/logo/logo.png')}}" alt="LOGO"/>
+        <h3> Makarim ElAkhlag</h3>
+
+    </div> </a></b>
                   </div>
         <div class="col-lg-9 col-md-9 header-menu d-flex align-items-center justify-content-end">
           <div class="data-contact d-flex align-items-center">
@@ -24,15 +28,19 @@
                               </div>
             </div>
           </div>
+          @guest
           <div class="contentsticky_group d-flex justify-content-end">
             <div class="header_link_myaccount">
-                              <a class="login" href="http://demo.bestprestashoptheme.com/savemart/ar/الحساب الشخصي" rel="nofollow" title="تسجيل الدخول إلى حسابك"><i class="header-icon-account"></i></a>
+                              <a class="login" href="{{ route('user.login') }}" rel="nofollow" title="تسجيل الدخول إلى حسابك"><i class="header-icon-account"></i></a>
                           </div>
+                          @endguest
             <div class="header_link_wishlist">
-              <a href="http://demo.bestprestashoptheme.com/savemart/ar/module/novblockwishlist/mywishlist" title="My Wishlists">
-                <i class="header-icon-wishlist"></i>
+              <a href="{{ route('user.order') }}" title="Order">
+                <i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i>
               </a>
             </div>
+
+
 
 <!-- begin module:ps_shoppingcart/ps_shoppingcart.tpl -->
 <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/ps_shoppingcart/ps_shoppingcart.tpl --><div id="_desktop_cart">
@@ -45,7 +53,7 @@
                       @endauth
 
                       @guest
-                      {{ route('mainpagenotlogin.viewAddtocart') }}
+                      {{ route('user.mainpage') }}
                       @endguest
 
 

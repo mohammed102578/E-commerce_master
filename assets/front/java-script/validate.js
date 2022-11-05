@@ -10,19 +10,18 @@ $().ready(function() {
                 required: true,
                 minlength: 2
             },
+
+
             password: {
-                required: true,
-                minlength: 4
-            },
-           New_password: {
                 required: true,
                 minlength: 4,
 
             },
+
             confirmpassword: {
                 required: true,
                 minlength: 4,
-                equalTo: "#New_password"
+                equalTo: "#password"
             },
             email: {
                 required: true,

@@ -20,9 +20,16 @@ Route::group(['namespace'=>'Vendor','middleware'=>'auth:vendor'], function () {
 
 
 
+    ############message##############################################
+    Route::post('create-messages','messageController@storeMessage') -> name('vendor.messages');
+    Route::get('show-messages','messageController@showMessage') -> name('vendor.show.messages');
+    Route::get('delete/{id}','messageController@destroy') -> name('vendor.message.delete');
+############################end message
+
     Route::get('/dashboard','dashboardController@index')->name('vendor.dashboard');
 
-
+    Route::get('order','ProductController@order') -> name('vendor.order');
+    Route::get('changeRecieve/{id}','ProductController@changeRecieve') -> name('vendor.changeRecieve');
 
 ############vendor route###########
 Route::group(['prefix' => 'product'], function () {
@@ -30,10 +37,12 @@ Route::group(['prefix' => 'product'], function () {
     Route::get('create','ProductController@create') -> name('vendor.Product.create');
     Route::post('store','ProductController@store') -> name('vendor.Product.store');
 
+
     Route::get('edit/{id}','ProductController@edit') -> name('vendor.Product.edit');
     Route::post('update/{id}','ProductController@update') -> name('vendor.Product.update');
     Route::get('changeStatus/{id}','ProductController@changeStatus') -> name('vendor.Product.changestatus');
     Route::get('delete/{id}','ProductController@destroy') -> name('vendor.Product.delete');
+
 });
 ##### end Product route##############################################
 
@@ -42,10 +51,10 @@ Route::group(['prefix' => 'product'], function () {
 
 ####################begin vendor route##############################################
 Route::group(['prefix' => 'Profile'], function () {
-Route::get('/','ProfileController@index') -> name('vendor.profile');
-Route::get('edit/{id}','ProfileController@edit') -> name('vendor.profile.edit');
-Route::post('update/{id}','ProfileController@update') -> name('vendor.profile.update');
-Route::post('updatePassword/{id}','ProfileController@changePassword') -> name('vendor.profile.changePassword');
+Route::get('/','ProfilesController@index') -> name('vendor.profile');
+Route::get('edit/{id}','ProfilesController@edit') -> name('vendor.profile.edit');
+Route::post('update/{id}','ProfilesController@update') -> name('vendor.profile.update');
+Route::post('updatePassword/{id}','ProfilesController@changePassword') -> name('vendor.profile.changePassword');
 Route::get('logout', 'LoginController@logout')->name('vendor.logout');
 });
 
@@ -56,11 +65,10 @@ Route::get('logout', 'LoginController@logout')->name('vendor.logout');
 
 
 ####################begin vendor route##############################################
-Route::group(['prefix' => 'notification'], function () {
 
-    Route::post('show-notification','notificationController@shownotification') -> name('vendor.notification');
 
-    });
+
+
 
     ####################bend vendor route##############################################
 

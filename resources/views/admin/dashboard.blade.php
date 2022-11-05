@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
 <style>
 @import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
 body {

@@ -16,6 +16,7 @@ class LoginController extends Controller
 
 // check the admin admin login
 public function login(loginRequest $request){
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $remember_me = $request->has('remember_me') ? true : false;
 
@@ -25,6 +26,9 @@ public function login(loginRequest $request){
     }
    // notify()->error('خطا في البيانات  برجاء المجاولة مجدا ');
     return redirect()->back()->with(['error' => 'هناك خطا بالبيانات']);
+}else{
+    return redirect('admin/login');
+}
 }
 
 

@@ -6,34 +6,90 @@ use App\Http\Requests\vendor\ProductRequest;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\MainCategory;
+use App\Models\Order;
+use App\User;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use DB;
+use App\Models\Message;
 use Auth;
 use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     public function index(){
 
+
+
+//message
+
+$messageCount=Message::select()->where('type','admin')->get()->count();
+
+ $message=Message::select()->where('type','admin')->get();
+
+
+
+
+
+//Notification
+
+$notification=Notification::select()->where('type','vendor')->where('active',0)->get();
+
+
+$notificationCount=Notification::select()->where('type','vendor')->where('active',0)->get()->count();
+
+
+
+
+
         $subcategories=SubCategory::selection()->get();
 
         $products=Product::selection()->where('vendor_id',Auth::guard('vendor')->user()-> id)->get();
-        return view('vendor.product.index',compact('products','subcategories'));
+
+
+
+        return view('vendor.product.index',compact('message','messageCount','products','subcategories' ,'notificationCount','notificationCount'));
+
     }
 
 public function create(){
+
+
+
+//message
+
+$messageCount=Message::select()->where('type','admin')->get()->count();
+
+ $message=Message::select()->where('type','admin')->get();
+
+
+
+
+
+//Notification
+
+$notification=Notification::select()->where('type','vendor')->where('active',0)->get();
+
+
+$notificationCount=Notification::select()->where('type','vendor')->where('active',0)->get()->count();
+
+
+
+
+
+
     $subcategories=SubCategory::selection()->get();
-    return view("vendor.product.create",compact('subcategories'));
+    return view("vendor.product.create",compact('message','messageCount','subcategories' ,'notification','notificationCount'));
 }
 
 
 
 public function store(ProductRequest $request)
 {
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
     try {
-
-
-
         if($request->hasfile('photo'))
         {
 
@@ -44,23 +100,12 @@ public function store(ProductRequest $request)
                 $file_name ="images/Product/".time().$name;
                 $path = "assets/images/".'Product';
                 $image-> move($path,$file_name);
-
-
-
                 $name_photo[]= $file_name;
-
-
-
  }
 
  $photo=implode(',',$name_photo);
 
-
-
         }
-
-
-
 
 
  $Product = Product::create([
@@ -77,18 +122,13 @@ public function store(ProductRequest $request)
 ]);
 
 
-
-
-
         if (!$request->has('active'))
             $request->request->add(['active' => 0]);
         else
             $request->request->add(['active' => 1]);
-
-
-
-
-
+//notification
+Notification::create(['photo'=>$vendorPhoto,'userName'=>   $vendorName,
+'notification'=>"تم اضافة منتج جديد  " ,'type'=>'admin']);
 
 
 
@@ -99,10 +139,36 @@ public function store(ProductRequest $request)
         return redirect()->route('vendor.Product')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
 
     }
+}else{
+    return redirect()->route('vendor.Product');
+}
 }
 
 public function edit($id)
 {
+
+
+
+
+//message
+
+$messageCount=Message::select()->where('type','admin')->get()->count();
+
+ $message=Message::select()->where('type','admin')->get();
+
+
+
+
+
+//Notification
+
+$notification=Notification::select()->where('type','vendor')->where('active',0)->get();
+
+
+$notificationCount=Notification::select()->where('type','vendor')->where('active',0)->get()->count();
+
+
+
 
         $subcategories=SubCategory::selection()->active()->get();
 
@@ -112,7 +178,7 @@ public function edit($id)
 
 
 
-        return view('vendor.product.edit', compact('product', 'subcategories'));
+        return view('vendor.product.edit', compact('message','messageCount','product', 'subcategories' ,'notificationCount','notification'));
 
 
         return redirect()->route('vendor.Product')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
@@ -123,7 +189,16 @@ public function edit($id)
 public function update($id,ProductRequest $request)
     {
 
+
+
+
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
         try {
+
+return $request->id;
+
 
             $Product = Product::selection()->find($id);
             if (!$Product)
@@ -144,12 +219,7 @@ public function update($id,ProductRequest $request)
                     $file_name ="images/Product/".time().$name;
                     $path = "assets/images/".'Product';
                     $image-> move($path,$file_name);
-
-
-
                     $name_photo[]= $file_name;
-
-
 
      }
 
@@ -168,7 +238,6 @@ public function update($id,ProductRequest $request)
                 $request->request->add(['active' => 1]);
 
              $data = $request->except('_token', 'id', 'photo');
-
 
 
 
@@ -193,7 +262,9 @@ public function update($id,ProductRequest $request)
             DB::rollback();
             return redirect()->route('vendor.Product')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
-
+    }else{
+        return redirect()->route('vendor.Product');
+    }
     }
 
 
@@ -227,11 +298,104 @@ public function destroy($id){
 
 
             $Product->delete($id);
+//notification
+Notification::create(['photo'=>$vendorPhoto,'userName'=>   $vendorName,
+'notification'=>"تم حذف منتج  " ,'type'=>'admin']);
+
 
         return redirect()->route('vendor.Product')->with(['success' => 'تم الحذف بنجاح']);
 
 
 }
+
+
+
+public function order(){
+
+
+//message
+
+$messageCount=Message::select()->where('type','admin')->get()->count();
+
+ $message=Message::select()->where('type','admin')->get();
+
+
+
+
+
+//Notification
+
+$notification=Notification::select()->where('type','vendor')->where('active',0)->get();
+
+
+$notificationCount=Notification::select()->where('type','vendor')->where('active',0)->get()->count();
+
+
+
+
+  $order= Order::where('city',Auth::guard('vendor')->user()->city)->Selection()->get();
+
+
+return view('vendor.product.order',compact('message','messageCount','order','notificationCount','notification'));
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+public function changeRecieve($id){
+
+
+
+
+
+  $Order_ID=Order::selection()->find($id);
+  $recieve=$Order_ID->recieve;
+if ($recieve==1){
+    $Order_ID->update([
+        'recieve' => "0",
+    ]);
+    }else{
+        $Order_ID->update([
+                        'recieve' => "1",
+                    ]);
+    }
+
+//message
+
+$messageCount=Message::select()->where('type','admin')->get()->count();
+
+ $message=Message::select()->where('type','admin')->get();
+
+
+
+
+
+//Notification
+
+$notification=Notification::select()->where('type','vendor')->where('active',0)->get();
+
+
+$notificationCount=Notification::select()->where('type','vendor')->where('active',0)->get()->count();
+
+
+
+
+    $order= Order::where('city',Auth::guard('vendor')->user()->city)->Selection()->get();
+    return view('vendor.product.order',compact('message','messageCount','order','notificationCount','notification'));
+
+  }
+
+
+
 
 
 }

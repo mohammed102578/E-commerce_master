@@ -1,31 +1,24 @@
 @extends('layouts.admin')
 
+<style>
+    @import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+    body {
+        font-family: 'Lateef', serif;
+    }
+
+</style>
 @section('content')
-    <div class="app-content content">
-        <div class="content-wrapper">
-            <div class="content-header row">
-                <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title"> الاقسام الرئيسية </h3>
-                    <div class="row breadcrumbs-top">
-                        <div class="breadcrumb-wrapper col-12">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية</a>
-                                </li>
-                                <li class="breadcrumb-item active"> ألمتاجر
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="app-content content">
+    <div class="content-wrapper">
+
             <div class="content-body">
                 <!-- DOM - jQuery events table -->
                 <section id="dom">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 ">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">جميع المتاجر </h4>
+                                    <h4 class="card-title" style="font-family:'Lateef', serif;font-size:25px">جميع المتاجر </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -43,46 +36,52 @@
 
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
+
+
                                         <table
-                                            class="table display nowrap table-striped table-bordered scroll-horizontal">
-                                            <thead class="">
+                                        class="table display nowrap table-striped table-bordered  table-light
+                                        table-responsive w-100 d-block d-md-table">
+                                            <thead class="thead-dark">
                                             <tr>
-                                                <th>الاسم</th>
-                                                <th> اللوجو</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px">الاسم</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px"> اللوجو</th>
 
-                                                <th>الهاتف</th>
-                                                <th>العنوان</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px">الهاتف</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px">العنوان</th>
 
-                                                <th> ألحالة </th>
-                                                <th>الإجراءات</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px"> ألحالة </th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px">الإجراءات</th>
                                             </tr>
                                             </thead>
                                             <tbody>
 
-                                            @isset($vendors)
+                                       @isset($vendors)
                                                 @foreach($vendors as $vendor)
                                                     <tr>
-                                                        <td>{{$vendor -> name}}</td>
-                                                        <td><img style="width: 150px; height: 100px;"
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">{{$vendor -> name}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px"><img style="width: 75px; height: 75px;"
                                                                  src="{{$vendor -> logo}}"></td>
 
-                                                        <td>{{$vendor -> mobile}}</td>
-                                                        <td> بالقرب من  {{$vendor -> address}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">{{$vendor -> mobile}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px"> بالقرب من  {{$vendor -> address}}</td>
 
-                                                        <td> {{$vendor -> getActive()}}</td>
-                                                        <td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px"> {{$vendor -> getActive()}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">
                                                             <div class="btn-group" role="group"
                                                                  aria-label="Basic example">
                                                                 <a href="{{route('admin.vendors.edit',$vendor -> id)}}"
-                                                                   class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
+                                                                   class="btn btn-outline-primary  box-shadow-3 mr-1 mb-1" style="width: 78px;"
+                                                                   style="font-family:'Lateef', serif;font-size:18px">تعديل</a>
 
 
                                                                 <a href="{{ route("admin.vendors.delete",$vendor -> id) }}"
-                                                                   class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
+                                                                   class="btn btn-outline-danger  box-shadow-3 mr-1 mb-1" style="width: 78px;"
+                                                                   style="font-family:'Lateef', serif;font-size:18px">حذف</a>
 
 
                                                                 <a href="{{ route("admin.vendors.changestatus",$vendor -> id) }}"
-                                                                   class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                   class="btn btn-outline-warning  box-shadow-3 mr-1 mb-1" style="width: 78px;"
+                                                                   style="font-family:'Lateef', serif;font-size:18px">
                                                                    @if ($vendor->active==1)
                                                                     الغاء تفعيل
 
@@ -103,12 +102,9 @@
                                                 @endforeach
                                             @endisset
 
-
                                             </tbody>
                                         </table>
-                                        <div class="justify-content-center d-flex">
 
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -118,4 +114,21 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @endsection

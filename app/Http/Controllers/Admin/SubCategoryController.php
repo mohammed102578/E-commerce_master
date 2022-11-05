@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-namespace App\Http\Controllers\Admin;
+;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubCategoryRequest;
@@ -10,24 +10,65 @@ use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use DB;
+use App\Models\Message;
+use App\Models\Notification;
+use App\Models\Vendor;
 use Illuminate\Support\Str;
 class SubCategoryController extends Controller
 {
     public function index(){
 
+
+//message
+$messageCount=Message::select()->where('type','vendor')->get()->count();
+
+ $message=Message::select()->where('type','vendor')->get();
+
+
+
+ //Notification
+
+ $notification=Notification::select()->where('type','admin')->where('active',0)->get();
+
+
+ $notificationCount=Notification::select()->where('type','admin')->where('active',0)->get()->count();
+
+    //return all vendor
+
+    $allVendor=Vendor::select()->get();
         $categories=SubCategory::selection()->get();
-        return view('admin.SubCategory.index',compact('categories'));
+        return view('admin.SubCategory.index',compact('categories','allVendor','message','messageCount','notification','notificationCount'));
     }
 
 public function create(){
+
+
+//message
+$messageCount=Message::select()->where('type','vendor')->get()->count();
+
+ $message=Message::select()->where('type','vendor')->get();
+
+
+
+ //Notification
+
+ $notification=Notification::select()->where('type','admin')->where('active',0)->get();
+
+
+ $notificationCount=Notification::select()->where('type','admin')->where('active',0)->get()->count();
+
+        //return all vendor
+
+$allVendor=Vendor::select()->get();
     $categories = MainCategory::where('translation_of', 0)->active()->get();
-    return view("admin.SubCategory.create",compact('categories'));
+    return view("admin.SubCategory.create",compact('categories','allVendor','message','messageCount','notification','notificationCount'));
 }
 
 
 
 public function store(SubCategoryRequest $request)
 {
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
     try {
 
         if (!$request->has('active'))
@@ -62,11 +103,34 @@ public function store(SubCategoryRequest $request)
         return redirect()->route('admin.SubCategory')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
 
     }
+}else{
+    return redirect()->route('admin.SubCategory');
+}
 }
 
 public function edit($id)
 {
     try {
+
+//message
+$messageCount=Message::select()->where('type','vendor')->get()->count();
+
+ $message=Message::select()->where('type','vendor')->get();
+
+
+
+ //Notification
+
+ $notification=Notification::select()->where('type','admin')->where('active',0)->get();
+
+
+ $notificationCount=Notification::select()->where('type','admin')->where('active',0)->get()->count();
+
+
+
+            //return all vendor
+
+$allVendor=Vendor::select()->get();
         $maincategories =MainCategory::where('translation_of', 0)->active()->get();
 
         $subcategory = SubCategory::selection()->find($id);
@@ -75,7 +139,7 @@ public function edit($id)
 
 
 
-        return view('admin.SubCategory.edit', compact('subcategory', 'maincategories'));
+        return view('admin.SubCategory.edit', compact('subcategory', 'maincategories','allVendor','message','messageCount','notification','notificationCount'));
 
     } catch (\Exception $exception) {
         return redirect()->route('admin.SubCategory')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
@@ -85,7 +149,7 @@ public function edit($id)
 
 public function update($id,SubCategoryRequest $request)
     {
-
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
         try {
 
             $subcategory = SubCategory::selection()->find($id);
@@ -132,7 +196,9 @@ public function update($id,SubCategoryRequest $request)
             DB::rollback();
             return redirect()->route('admin.SubCategory')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
-
+    }else{
+        return redirect()->route('admin.SubCategory');
+    }
     }
 
 

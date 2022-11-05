@@ -1,25 +1,20 @@
 @extends('layouts.admin')
 
 @section('content')
+<style>
 
+
+    @import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+    body {
+        font-family: 'Lateef', serif;
+         font-size:18px;
+    }
+
+
+</style>
     <div class="app-content content">
         <div class="content-wrapper">
-            <div class="content-header row">
-                <div class="content-header-left col-md-6 col-12 mb-2">
-                    <div class="row breadcrumbs-top">
-                        <div class="breadcrumb-wrapper col-12">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="">الرئيسية </a>
-                                </li>
-                                <li class="breadcrumb-item"><a href=""> الاقسام الرئيسية </a>
-                                </li>
-                                <li class="breadcrumb-item active">إضافة قسم رئيسي
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="content-body">
                 <!-- Basic form layout section start -->
                 <section id="basic-form-layouts">

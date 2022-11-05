@@ -3,22 +3,7 @@
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper">
-            <div class="content-header row">
-                <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title"> الاقسام الرئيسية </h3>
-                    <div class="row breadcrumbs-top">
-                        <div class="breadcrumb-wrapper col-12">
-                            <ol class="breadcrumb">
-                                </li>
-                                <li class="breadcrumb-item active"><a href="{{route('admin.languages.create')}}">الاقسام الرئيسية</a>
-                                </li>
-                                <li class="breadcrumb-item active"><a href="{{route('admin.languages.create')}}"></a>اختيار قسم جديد</a>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="content-body">
                 <!-- DOM - jQuery events table -->
                 <section id="dom">
@@ -26,7 +11,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">جميع اقسام الموقع </h4>
+                                    <h4>جميع اقسام الموقع </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -45,16 +30,16 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
                                         <table
-                                            class="table display nowrap table-striped table-bordered ">
-                                            <thead>
-                                            <tr>
-                                                <th> الاسم</th>
-                                                <th> الصورة</th>
-                                                <th>اسم القسم الرئيسي</th>
-                                                <th>الحالة</th>
+                                        class="table display nowrap table-striped table-bordered  table-light
+                                        table-responsive w-100 d-block d-md-table">
+                                        <thead class="thead-dark">                                            <tr>
+                                               <th style="font-family:'Lateef', serif;font-size:18px"> الاسم</th>
+                                               <th style="font-family:'Lateef', serif;font-size:18px"> الصورة</th>
+                                               <th style="font-family:'Lateef', serif;font-size:18px">اسم القسم الرئيسي</th>
+                                               <th style="font-family:'Lateef', serif;font-size:18px">الحالة</th>
 
 
-                                                <th>الإجراءات</th>
+                                               <th style="font-family:'Lateef', serif;font-size:18px">الإجراءات</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -62,18 +47,18 @@
                                             @isset($categories)
                                                 @foreach($categories as $category)
                                                     <tr>
-                                                        <td>{{$category -> name}}</td>
-                                                        <td><img style="width: 180px; height: 100px;"
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">{{ $category -> name}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px"><img style="width: 100px; height: 100px;"
                                                             src="{{$category -> photo}}"></td>
 
 
 
-                                                        <td>{{$category->maincategory-> name}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">{{ $category->maincategory-> name}}</td>
 
 
-                                                        <td>{{$category -> getActive()}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">{{ $category -> getActive()}}</td>
 
-                                                        <td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">
                                                             <div class="btn-group" role="group"
                                                                  aria-label="Basic example">
                                                                 <a href="{{ route('admin.SubCategory.edit',$category-> id) }}"

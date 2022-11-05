@@ -61,6 +61,8 @@ class RegisterController extends Controller
 
     protected function store(RegisterRequest $request)
     {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
 try{
 
 
@@ -68,6 +70,7 @@ try{
     DB::beginTransaction();
          $user=User::create([
             'name' => $request->name,
+            'city' => $request->city,
             'email' => $request->email,
             'gender' => $request->gender,
             'mobile' => $request->mobile,
@@ -85,7 +88,9 @@ try{
             DB::rollback();
         }
 
-
+    }else{
+        return redirect()->route('user.register');
+    }
     }
 
 
@@ -94,6 +99,8 @@ try{
     public function checkEmail(RegisterRequest $request)
 
     {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
         $data=$request->all();
         $checkEmail = User::where('email',$data['email'])->count();
 
@@ -104,7 +111,10 @@ try{
             return true;
  }
 
+        }else{
+            return redirect()->route('user.register');
 
+        }
         }
 
 
@@ -113,6 +123,8 @@ try{
     public function checkMobile(RegisterRequest $request)
 
     {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
         $data=$request->all();
         $checkMobile = User::where('mobile',$data['mobile'])->count();
 
@@ -123,7 +135,10 @@ try{
             return true;
  }
 
+        }else{
+            return redirect()->route('user.register');
 
+        }
         }
 
     }

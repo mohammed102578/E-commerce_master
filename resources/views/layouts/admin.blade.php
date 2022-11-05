@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html class="loading" lang="ar" data-textdirection="rtl">
 <head>
-<style>
+<!--start dataTable-->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
-</style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -24,6 +24,8 @@
     <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
           rel="stylesheet">
 
+          <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
+          rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/plugins/animate/animate.css')}}">
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/vendors.css')}}">
@@ -59,8 +61,9 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/style-rtl.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/custom-rtl.css')}}">
+
     <!-- END Custom CSS-->
-    @notify_css
+
     @yield('style')
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
     <style>
@@ -137,53 +140,195 @@
 <script src="{{asset('assets/admin/js/scripts/modal/components-modal.js')}}" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-    $('#meridians1').timeDropper({
-        meridians: true,
-        setCurrentTime: false
-    });
-    $('#meridians2').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians3').timeDropper({
-        meridians: true,
-        setCurrentTime: false
-    });
-    $('#meridians4').timeDropper({
-        meridians: true,
-        setCurrentTime: false
-    });
-    $('#meridians5').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians6').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians7').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians8').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians9').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians10').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians11').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians12').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians13').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians14').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-</script>
-@yield('script')
+
+
+
+
+
+
+
+
+
+
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">ارسال رسالة الى المتجر</h4>
+          <button type="button" style="margin-right: 259px;" class="close " data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+
+
+ <form class="form" action="{{route('admin.messages')}}" method="post" id="message-">
+                                        @csrf
+
+
+
+
+
+
+
+                                        <div class="form-group">
+
+<div class="col-xs-12">
+  <label for="title" style="float: right" ><h4 class="text-dark align-right" class="text-dark">المتجر:</h4></label>
+
+ <select class="form-control" name="vendor_id">
+ @foreach ($allVendor as $vendor)
+ <option   value="{{ $vendor->id }}">{{ $vendor->name }}<option>
+ @endforeach
+
+ </select>
+</div>
+@error('title')
+<span class="text-danger">{{$message}}</span>
+@enderror
+</div>
+
+
+
+
+
+
+<div class="form-group">
+
+                                  <div class="col-xs-12">
+                                    <label for="title" style="float: right" ><h4 class="text-dark align-right" class="text-dark">العنوان:</h4></label>
+
+                                    <input type="text" class="form-control" name="title" id="title"
+                                     value="">
+                                </div>
+                                @error('title')
+                     <span class="text-danger">{{$message}}</span>
+                     @enderror
+                            </div>
+
+                                          <div class="form-group">
+                                            <div class="col-xs-12 ">
+                                                <label for="messages"  style="float: right"><h4 class="text-dark">الرسالة  :</h4></label>
+                                                <textarea type="text" class="form-control"
+                                                title="enter your messag." name="message" ></textarea>
+                                            </div>
+                                            @error('email')
+                                 <span class="text-danger">{{$message}}</span>
+                                 @enderror
+                                        </div>
+                                          <div class="form-group">
+
+                                            <input type="submit" class="btn btn-danger" style="margin-top: 22px;
+                                            font-family: 'Lateef', serif;
+                                            font-size: 20px;
+                                            margin-left: 207px;" value="ارسال">
+                                          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+<!--end the model-->
+
+
+
+
+
+
+
+<!--start the replay message-->
+  <div class="modal fade" id="replayModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">ارسال رسالة الى المتجر</h4>
+            <button type="button" style="margin-right: 259px;" class="close " data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+
+
+
+   <form class="form" action="{{route('admin.messages')}}" method="post" id="message-">
+                                          @csrf
+
+
+
+
+
+
+
+                                          <div class="form-group">
+
+  <div class="col-xs-12">
+    <label for="title" style="float: right" ><h4 class="text-dark align-right" class="text-dark">المتجر:</h4></label>
+
+   <select class="form-control" name="vendor_id">
+   @foreach ($allVendor as $vendor)
+   <option   value="{{ $vendor->id }}">{{ $vendor->name }}<option>
+   @endforeach
+
+   </select>
+  </div>
+  @error('title')
+  <span class="text-danger">{{$message}}</span>
+  @enderror
+  </div>
+
+
+
+
+
+
+  <div class="form-group">
+
+                                    <div class="col-xs-12">
+                                      <label for="title" style="float: right" ><h4 class="text-dark align-right" class="text-dark">العنوان:</h4></label>
+
+                                      <input type="text" class="form-control" name="title" id="title"
+                                       value="">
+                                  </div>
+                                  @error('title')
+                       <span class="text-danger">{{$message}}</span>
+                       @enderror
+                              </div>
+
+                                            <div class="form-group">
+                                              <div class="col-xs-12 ">
+                                                  <label for="messages"  style="float: right"><h4 class="text-dark">الرسالة  :</h4></label>
+                                                  <textarea type="text" class="form-control"
+                                                  title="enter your messag." name="message" ></textarea>
+                                              </div>
+                                              @error('email')
+                                   <span class="text-danger">{{$message}}</span>
+                                   @enderror
+                                          </div>
+                                            <div class="form-group">
+
+                                              <input type="submit" class="btn btn-danger" style="margin-top: 22px;
+                                              font-family: 'Lateef', serif;
+                                              font-size: 20px;
+                                              margin-left: 207px;" value="ارسال">
+                                            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  {{--end the replay message--}}
+
+
+
+
 </body>
 </html>

@@ -1,30 +1,83 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-namespace App\Http\Controllers\Admin;
 
+use App\Models\Message;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MainCategoryRequest;
 use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use DB;
+use App\Models\Notification;
+use App\Models\Vendor;
 use Illuminate\Support\Str;
 class MainCategoryController extends Controller
 {
     public function index(){
+
+
+
+//message
+
+$messageCount=Message::select()->where('type','vendor')->get()->count();
+
+
+ $message=Message::select()->where('type','vendor')->get();
+
+
+
+
+ //Notification
+
+ $notification=Notification::select()->where('type','admin')->where('active',0)->get();
+
+
+ $notificationCount=Notification::select()->where('type','admin')->where('active',0)->get()->count();
+
+
+
+//return all vendor
+
+$allVendor=Vendor::select()->get();
          $default_lang=get_default_language();
         $categories=MainCategory::where('translation_lang',$default_lang)->selection()->get();
-        return view('admin.mainCategory.index',compact('categories'));
+        return view('admin.mainCategory.index',compact('categories','allVendor','message','messageCount','notification','notificationCount'));
     }
 
 public function create(){
-    return view("admin.mainCategory.create");
+
+
+
+
+//message
+
+$messageCount=Message::select()->where('type','vendor')->get()->count();
+
+
+ $message=Message::select()->where('type','vendor')->get();
+
+
+
+
+ //Notification
+
+ $notification=Notification::select()->where('type','admin')->where('active',0)->get();
+
+
+ $notificationCount=Notification::select()->where('type','admin')->where('active',0)->get()->count();
+
+
+//return all vendor
+
+$allVendor=Vendor::select()->get();
+    return view("admin.mainCategory.create",compact('allVendor','message','messageCount','notification','notificationCount'));
 }
 
 
 public function store(MainCategoryRequest $request)
 {
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     try {
         //return $request;
@@ -85,7 +138,9 @@ public function store(MainCategoryRequest $request)
 
         return redirect()->route('admin.MainCategory')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
     }
-
+    }else{
+        return redirect()->route('admin.MainCategory');
+    }
 }
 
 
@@ -95,6 +150,32 @@ public function store(MainCategoryRequest $request)
 
 public function edit($mainCat_id)
 {
+
+
+
+//message
+
+$messageCount=Message::select()->where('type','vendor')->get()->count();
+
+
+ $message=Message::select()->where('type','vendor')->get();
+
+
+
+
+ //Notification
+
+ $notification=Notification::select()->where('type','admin')->where('active',0)->get();
+
+
+ $notificationCount=Notification::select()->where('type','admin')->where('active',0)->get()->count();
+
+
+
+//return all vendor
+
+$allVendor=Vendor::select()->get();
+
     //get specific categories and its translations
     $mainCategory = MainCategory::with('categories')
         ->selection()
@@ -103,12 +184,13 @@ public function edit($mainCat_id)
     if (!$mainCategory)
         return redirect()->route('admin.MainCategory')->with(['error' => 'هذا القسم غير موجود ']);
 
-    return view('admin.mainCategory.edit', compact('mainCategory'));
+    return view('admin.mainCategory.edit', compact('mainCategory','allVendor','message','messageCount','notification','notificationCount'));
 }
 
 
 public function update($mainCat_id, MainCategoryRequest $request)
 {
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
     try {
@@ -149,7 +231,9 @@ public function update($mainCat_id, MainCategoryRequest $request)
 
         return redirect()->route('admin.MainCategory')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
     }
-
+    }else{
+        return redirect()->route('admin.MainCategory');
+    }
 }
 
 

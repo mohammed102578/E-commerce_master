@@ -4,7 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title> Dashboard</title>
-
+  <style>
+    @import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+    body {
+        font-family: 'Lateef', serif;
+    }</style>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -37,8 +41,44 @@ style="text-align: right">
     </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
+<!-- start chart -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	var _ydata=JSON.parse('{!! json_encode($months) !!}');
+	var _xdata=JSON.parse('{!! json_encode($monthCount) !!}');
+    var _yydata=JSON.parse('{!! json_encode($city) !!}');
+	var _xxdata=JSON.parse('{!! json_encode($orderCount) !!}');
+</script>
+<script src="{{asset('assets/admin/js/charts/chart-area-demo.js')}}"></script>
+
+<script src="{{asset('assets/admin/js/charts/chart-bar-demo.js')}}"></script>
+
+<!-- end chart -->
+<!-- jquery -->
+
 <script src="{{asset('assets/admin/plugins/jquery/jquery.min.js')}}"></script>
+<!--start pusher notification---->
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+  <script>
+
+
+// Enable pusher logging - don't include this in production
+Pusher.logToConsole = true;
+
+
+
+    var pusher = new Pusher('d72d8da07e3fc274c789', {
+      cluster: 'mt1'
+    });
+
+  </script>
+
+
+<!---end pusher notification--->
+
+
+
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('assets/admin/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -71,5 +111,9 @@ style="text-align: right">
 <script src="{{asset('assets/admin/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('assets/admin/dist/js/pages/dashboard.js')}}"></script>
+
+
+
+
 </body>
 </html>

@@ -9,7 +9,7 @@
 
 
           <span>
-            support@gmail.com
+          mohammed102578@gmail.com
           </span>
 
 
@@ -18,7 +18,7 @@
                           </div>
             <div class="detail-call d-flex align-items-center justify-content-center">
               <i class="icon-deal"></i>
-              <p>Today Deals </p>
+              <p>المعاملات اليومية </p>
             </div>
           </div>
 
@@ -37,7 +37,7 @@
           class="user-name text-bold-700 latief">{{Auth::user()->name}}</span>
 
                 <span class="avatar avatar-online">
-      <img class="rounded-circle" style="height: 35px;"src="http://localhost/e-commerce/assets/{{ Auth::user()->photo}}" alt="avatar"><i></i></span>
+      <img class="rounded-circle" style="height: 35px;"src="http://localhost/E-commerce/assets/{{ Auth::user()->photo}}" alt="avatar"><i></i></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item latief" href="{{ route('user.profile') }}"><i
                         class="ft-user " ></i> تعديل الملف الشحصي </a>

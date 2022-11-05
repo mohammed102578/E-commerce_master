@@ -29,6 +29,7 @@ class userDetRequest extends FormRequest
             'name' => 'string|min:2|max:30',
             'mobile'=>'regex:/^([0-9\s\-\+\(\)]*)$/|min:9|max:20',
             'gender'=>'required_without:id',
+            'city'=>['required'],
         ];
     }
 
@@ -43,6 +44,7 @@ class userDetRequest extends FormRequest
             'mobile.digits' => 'يجب ان يحتوي رقم الموبايل على ارقام فقط',
             'photo.required_without'  => 'الصوره مطلوبة',
             'gender.required_without'  => 'الجنس مطلوبة',
+            'city.required' => 'المدينة مطلوب.',
         ];
     }
 }

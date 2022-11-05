@@ -7,28 +7,102 @@ use App\Http\Requests\VendorRequest;
 use App\Models\MainCategory;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
+use App\Models\Message;
 use App\Notifications\VendorCreated;
 use DB;
-
+use App\Models\Notification;
+use DataTables;
 class VendorsController extends Controller
 {
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $vendors = Vendor::selection()->paginate(PAGINATION_COUNT);
-        return view('admin.vendors.index', compact('vendors'));
-    }
 
+//message
+
+
+$messageCount=Message::select()->where('type','vendor')->get()->count();
+
+
+$message=Message::select()->where('type','vendor')->get();
+
+
+
+//Notification
+
+$notification=Notification::select()->where('type','admin')->where('active',0)->get();
+
+
+$notificationCount=Notification::select()->where('type','admin')->where('active',0)->get()->count();
+
+
+
+
+//return all vendor
+
+$allVendor=Vendor::select()->get();
+
+        $vendors = Vendor::selection()->get();
+
+
+
+       $vendor=Datatables::of($vendors)
+
+        ->addIndexColumn()
+
+        ->addColumn('action', function($row){
+
+
+
+               $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+
+
+
+                return $btn;
+
+        })
+
+        ->rawColumns(['action'])
+
+        ->make(true);
+
+
+        return view("admin.vendors.index",compact('vendors','allVendor','message','messageCount','notification','notificationCount'));
+
+    }//end of the fuction
     public function create()
     {
 
-        return view('admin.vendors.create');
+
+
+
+//message
+
+
+
+$messageCount=Message::select()->where('type','vendor')->get()->count();
+$message=Message::select()->where('type','vendor')->get();
+
+
+
+ //Notification
+
+ $notification=Notification::select()->where('type','admin')->where('active',0)->get();
+
+
+ $notificationCount=Notification::select()->where('type','admin')->where('active',0)->get()->count();
+
+//return all vendor
+
+$allVendor=Vendor::select()->get();
+        return view('admin.vendors.create',compact('allVendor','message','messageCount','notification','notificationCount'));
     }
 
     public function store(VendorRequest $request)
     {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
         try {
 
 
@@ -43,11 +117,6 @@ class VendorsController extends Controller
             if ($request->has('logo')) {
                 $filePath = uploadImage($request->logo,'vendors');
             }
-
-
-
-
-
 
             $vendor = Vendor::create([
                 'name' => $request->name,
@@ -70,18 +139,44 @@ class VendorsController extends Controller
             return redirect()->route('admin.vendors')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
 
         }
+    }else{
+        return redirect()->route('admin.vendors');
+    }
     }
 
     public function edit($id)
     {
         try {
 
+
+
+//message
+
+
+
+$messageCount=Message::select()->where('type','vendor')->get()->count();
+$message=Message::select()->where('type','vendor')->get();
+
+
+
+ //Notification
+
+ $notification=Notification::select()->where('type','admin')->where('active',0)->get();
+
+
+ $notificationCount=Notification::select()->where('type','admin')->where('active',0)->get()->count();
+
+
+
+//return all vendor
+
+$allVendor=Vendor::select()->get();
             $vendor = Vendor::Selection()->find($id);
             if (!$vendor)
                 return redirect()->route('admin.vendors')->with(['error' => 'هذا المتجر غير موجود او ربما يكون محذوفا ']);
 
 
-            return view('admin.vendors.edit', compact('vendor'));
+            return view('admin.vendors.edit', compact('vendor','allVendor','message','messageCount','notification','notificationCount'));
 
         } catch (\Exception $exception) {
             return redirect()->route('admin.vendors')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
@@ -90,6 +185,7 @@ class VendorsController extends Controller
 
     public function update($id, VendorRequest $request)
     {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         try {
 
@@ -136,6 +232,9 @@ class VendorsController extends Controller
             DB::rollback();
             return redirect()->route('admin.vendors')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
+    }else{
+        return redirect()->route('admin.vendors');
+    }
 
     }
 

@@ -1,4 +1,5 @@
 @extends('layouts.site')
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 @section('content')
 <div class="container">
 
@@ -114,7 +115,7 @@ $photo=explode(',',$product->photo) ;
 
     <img class="img-fluid image-cover" src="{{ $photo[0] }}" alt="" data-full-size-image-url="http://demo.bestprestashoptheme.com/savemart/29-large_default/brown-bear-printed-sweater.jpg" width="600" height="600">
 
-    <img class="img-fluid image-secondary" src="http://localhost/e-commerce/assets/{{ $photo[1] }}" width="600" height="600">
+    <img class="img-fluid image-secondary" src="http://localhost/E-commerce/assets/{{ $photo[1] }}" width="600" height="600">
 
 
 
@@ -203,7 +204,7 @@ $photo=explode(',',$product->photo) ;
 
 
 
-      <span itemprop="vendor" class="vendor pull-left">{{ $product->vendor->name }}</span>
+
 
 
     </div>

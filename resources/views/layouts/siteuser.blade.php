@@ -83,8 +83,9 @@ var static_token = "28add935523ef131c8432825597b9928";
 
 
 <header id="header" class="header-3 sticky-menu">
-
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 @include('front.include.header-mobile')
+@include('sweetalert::alert')
 @include('front.include.header-top')
 @include('front.include.header-center')
 

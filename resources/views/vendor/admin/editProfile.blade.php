@@ -1,12 +1,11 @@
-@extends('vendor.layouts.vendor')
-
+@extends('layouts.vendor')
 @section('content')
 
 <hr>
 <div class="app-content content">
     <div class="content-wrapper">
 
-        <h1 style="margin-bottom:60px" class="text-center m-b-70px">Vendor Detailes</h1>
+        <h1 style="margin-bottom:60px" class="text-center m-b-70px">الصفحة الشخصية </h1>
 
 
     <div class="row bg-dark text-light">
@@ -23,11 +22,12 @@
 
           <ul class="list-group">
 
-            <li class="list-group-item text-muted"><h1>vendor Info </h1><i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><h4>Name</h4></span> {{ Auth::guard('vendor')->user()->name}} :</li>
-            <li class="list-group-item text-right"><span class="pull-left"><h4>Email</h4></span> {{ Auth::guard('vendor')->user()->email}} :</li>
-            <li class="list-group-item text-right"><span class="pull-left"><h4>Mobile</h4></span> {{ Auth::guard('vendor')->user()->mobile}} :</li>
-            <li class="list-group-item text-right"><span class="pull-left"><h4>:Address</h4></span> {{ Auth::guard('vendor')->user()->address}} </li>
+            <li class="list-group-item text-muted " ><h1>المعلومات الشخصية</h1><i class="fa fa-dashboard fa-1x"></i></li>
+            <li class="list-group-item text-right" style="background-color:rgb(236, 236, 225)"><span class="pull-right"><h4>الاسم</h4></span><br><span class="pull-left" style="color: black"> {{ Auth::guard('vendor')->user()->name}} </span></li>
+            <li class="list-group-item text-right "><span class="pull-right"><h4>البريد الالكتروني</h4></span> <br><span class="pull-left" style="color: black"> {{ Auth::guard('vendor')->user()->email}} </span></li>
+            <li class="list-group-item text-right" style="background-color:rgb(236, 236, 225)"><span class="pull-right"><h4>الهاتف</h4></span><br><span class="pull-left" style="color: black">  {{ Auth::guard('vendor')->user()->mobile}} </span></li>
+            <li class="list-group-item text-right " ><span class="pull-right"><h4>المدينة</h4></span> <br><span class="pull-left" style="color: black"> {{ Auth::guard('vendor')->user()->city}} </span></li>
+            <li class="list-group-item text-right" style="background-color:rgb(236, 236, 225)"><span class="pull-right"><h4>العنوان</h4></span><br> <span class="pull-left" style="color: black"> {{ Auth::guard('vendor')->user()->address}} </span></li>
           </ul>
 
 
@@ -56,7 +56,7 @@
                                         <div class="form-group mt-10px">
 
                                             <div class="col-xs-6 offset-5">
-                                                <label for="first_name"><h4 class="text-light">اختر صورة</h4></label>
+                                                <label  style="float: right;" for="first_name"><h4 class="text-light" >اختر صورة</h4></label>
                                         <input type="file" class="text-center center-block file-upload"  name="logo">
 
                                     </div>
@@ -72,7 +72,7 @@
                                           <div class="form-group">
 
                                               <div class="col-xs-6 offset-5">
-                                                  <label for="name"><h4 class="text-light" class="text-light">الاسم:</h4></label>
+                                                  <label  style="float: right;" for="name" style="float: right;"><h4 class="text-light pull-right" class="text-light" >الاسم:</h4></label>
                                                   <input type="text" class="form-control" name="name" id="name"
                                                    value="{{Auth::guard('vendor')->user()->name}}">
                                               </div>
@@ -84,7 +84,7 @@
 
                                           <div class="form-group">
                                               <div class="col-xs-6 offset-5">
-                                                 <label for="mobile"><h4 class="text-light">الهاتف:</h4></label>
+                                                 <label  style="float: right;" for="mobile"><h4 class="text-light" >الهاتف:</h4></label>
                                                   <input type="text" class="form-control" name="mobile" id="mobile"
                                                   title="enter your mobile number if any."name="logo" value="{{Auth::guard('vendor')->user()->mobile}}">
                                               </div>
@@ -95,7 +95,7 @@
                                           <div class="form-group">
 
                                               <div class="col-xs-6 offset-5">
-                                                  <label for="email"><h4 class="text-light">البريد الالكتروني :</h4></label>
+                                                  <label  style="float: right;" for="email"><h4 class="text-light" >البريد الالكتروني :</h4></label>
                                                   <input type="email" class="form-control" name="email" id="email"
                                                   title="enter your email." name="logo" value="{{ Auth::guard('vendor')->user()->email}}">
                                               </div>
@@ -110,26 +110,101 @@
 
 
 
-                                                                            <div class="form-group mt-1">
-                                                                                <div class="col-xs-6 offset-5">
-                                                                                    <label for="switcheryColor4"
-                                                                                       class="card-title "><h4 class="text-light">الحالة :</h4> </label>
-                                                                                <input type="checkbox" value="1"
-                                                                                       name="active"
-                                                                                       id="switcheryColor4"
-                                                                                       class="switchery" data-color="success"
-                                                                                       @if(Auth::guard('vendor')->user()-> active == 1)checked @endif/>
 
-                                                                                    </div>
-                                                                                @error("active")
-                                                                                <span class="text-danger"> </span>
-                                                                                @enderror
+
+
+
+
+
+
+
+                                                                            <div class="col-xs-6 offset-5">
+                                                                                <label  style="float: right;" for="city"><h4 class="text-light input" > المدينة الحالية </h4></label>
+                                                                                <br>
+                                                                                <select name="city"  class="form-control" value="{{ Auth::user()->city}}" style="border-radius:9px; font-size:13px;  height: 45px">
+                                                                                    <optgroup label="من فضلك أختر المدينة ">
+
+                                                                                    <option @if(Auth::guard('vendor')->user()->city ==  'الخرطوم' )  selected @endif
+                                                                                    >الخرطوم</option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city== 'امدرمان'  )  selected @endif
+                                                                                    >امدرمان</option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'كسلا' )  selected @endif
+                                                                                    >كسلا</option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'بورتسودان' )  selected @endif
+                                                                                    >بورتسودان </option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'القضارف' )  selected @endif
+                                                                                    >القضارف</option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'الدمازين' )  selected @endif
+                                                                                    >الدمازين </option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'كوستي' )  selected @endif
+                                                                                    >كوستي </option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'خرطوم بحري' )  selected @endif
+                                                                                    >خرطوم بحري </option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'عطبرة' )  selected @endif
+                                                                                    >عطبرة</option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'دنقلا' )  selected @endif
+                                                                                    >دنقلا</option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'كادوقلي' )  selected @endif
+                                                                                    >كادوقلي</option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'الابيض' )  selected @endif
+                                                                                    >الابيض</option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'الفولة' )  selected @endif
+                                                                                    >الفولة</option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'الفاشر' )  selected @endif
+                                                                                    >الفاشر</option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'نيالا' )  selected @endif
+                                                                                    >نيالا</option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city==  'الجنينة' )  selected @endif
+                                                                                    >الجنينة</option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city== 'زالنجي'  )  selected @endif
+                                                                                    >زالنجي</option>
+                                                                                    <option  @if(Auth::guard('vendor')->user()->city== 'الضعين'  )  selected @endif
+                                                                                    >الضعين</option>
+                                                                                </select>
+                                                                                <label  style="float: right;" for="city" class="col-form-label error m-0 text-danger text-md-right bold"></label>
                                                                             </div>
+                                                                            @error('city')
+                                                                 <span class="text-danger">{{$message}}</span>
+                                                                 @enderror
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                                                                             <div class="form-group">
                                                                                 <div class="col-xs-6 offset-5">
-                                                                                <label for="projectinput1"> <h4 class="text-light">العنوان :</h4> </label>
+                                                                                <label  style="float: right;" for="projectinput1"> <h4 class="text-light">العنوان :</h4> </label>
                                                                                 <input type="text" id="pac-input"
                                                                                        class="form-control"
                                                                                        placeholder="  " name="address"
@@ -157,8 +232,8 @@
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> حفظ</button>
+                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> اعادة</button>
                             </div>
                       </div>
               	</form>
@@ -173,7 +248,7 @@
                     <div class="form-group">
 
                         <div class="col-xs-6 offset-5 offset-5">
-                            <label for="password"><h4 class="text-light">Current password</h4></label>
+                            <label  style="float: right;" for="password"><h4 class="text-light">كلمة السر الحالي</h4></label>
                             <input type="password" name="current_password" class="form-control" id="location" title="enter a location">
                         </div>
                         @error('current-password')
@@ -183,7 +258,7 @@
                     <div class="form-group">
 
                         <div class="col-xs-6 offset-5 offset-5">
-                            <label for="New_password"><h4 class="text-light">New Password</h4></label>
+                            <label  style="float: right;" for="New_password"><h4 class="text-light">كلمة السر الجديدة</h4></label>
                             <input type="password" class="form-control" name="New_password" id="New_password" itle="enter your New_password.">
                         </div>
                         @error('New_password')
@@ -193,13 +268,23 @@
                     <div class="form-group">
 
                         <div class="col-xs-6 offset-5 offset-5">
-                          <label for="confirm_New_password"><h4 class="text-light">Verify-password</h4></label>
+                          <label  style="float: right;" for="confirm_New_password"><h4 class="text-light">تأكيد كلمة السر الحالي</h4></label>
                             <input type="password" class="form-control" name="confirm_New_password" id="confirm_New_password" title="enter your confirm_New_password.">
                         </div>
                         @error('confirm_New_password')
              <span class="text-danger">{{$message}}</span>
              @enderror
                     </div>
+
+
+
+
+
+
+
+
+
+
                     <div class="form-group">
                          <div class="col-xs-12">
                               <br>

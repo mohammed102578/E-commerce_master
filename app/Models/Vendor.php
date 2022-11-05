@@ -13,7 +13,7 @@ class Vendor extends Authenticatable
     protected $table = 'vendors';
 
     protected $fillable = [
-        'latitude', 'longitude', 'name', 'mobile', 'password', 'address', 'email', 'logo', 'active', 'created_at', 'updated_at'
+        'latitude', 'longitude', 'name','city', 'mobile', 'password', 'address', 'email', 'logo', 'active', 'created_at', 'updated_at'
     ];
 
 
@@ -33,7 +33,7 @@ class Vendor extends Authenticatable
 
     public function scopeSelection($query)
     {
-        return $query->select('id','latitude','longitude','password', 'active', 'name', 'address', 'email', 'logo', 'mobile');
+        return $query->select('id','latitude','longitude','city','password', 'active', 'name', 'address', 'email', 'logo', 'mobile');
     }
 
 
@@ -55,6 +55,12 @@ class Vendor extends Authenticatable
 
     public  function product(){
         return $this -> hasMany('App/Models/Product',' vendor_id','id');
+    }
+
+
+
+    public  function message(){
+        return $this -> hasMany('App/Models/Message',' vendor_id','id');
     }
 
 

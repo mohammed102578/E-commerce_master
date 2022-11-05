@@ -53,7 +53,7 @@ font-family: 'Lateef', serif;
 
 
       <div class="text-center  ">
-        <img class="avatr rounded-circle img-responsive  h-100px w-100px"  style="max-width:29%" src="http://localhost/e-commerce/assets/{{ Auth::user()->photo }}" alt="avatar">
+        <img class="avatr rounded-circle img-responsive  h-100px w-100px"  style="max-width:29%" src="http://localhost/E-commerce/assets/{{ Auth::user()->photo }}" alt="avatar">
 
 
       </div></hr><br>

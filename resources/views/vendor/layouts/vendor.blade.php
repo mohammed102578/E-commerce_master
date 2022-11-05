@@ -1,195 +1,118 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="rtl">
+<html class="loading" lang="ar" data-textdirection="rtl">
 <head>
 <style>
-@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+    @import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+    body {
+        font-family: 'Lateef', serif;
+    }</style>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{asset('assets/admin/plugins/fontawesome-free/css/all.min.css')}}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="{{asset('assets/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{{asset('assets/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="{{asset('assets/admin/plugins/jqvmap/jqvmap.min.css')}}">
 
-.droid-arabic-kufi {
-  font-family: 'Droid Arabic Kufi', serif;
-}
-</style>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description"
-          content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
-    <meta name="keywords"
-          content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
-    <meta name="author" content="PIXINVENT">
-    <title>@yield('title')</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="apple-touch-icon" href="{{asset('assets/admin/images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/admin/images/ico/favicon.ico')}}">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
-        rel="stylesheet">
-    <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
-          rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/plugins/animate/animate.css')}}">
-    <!-- BEGIN VENDOR CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/vendors.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/weather-icons/climacons.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/fonts/meteocons/style.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/charts/morris.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/charts/chartist.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/selects/select2.min.css')}}">
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('assets/admin/vendors/css/charts/chartist-plugin-tooltip.css')}}">
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('assets/admin/vendors/css/forms/toggle/bootstrap-switch.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/toggle/switchery.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/pages/chat-application.css')}}">
-    <!-- END VENDOR CSS-->
-    <!-- BEGIN MODERN CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/app.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/control.css')}}">
-
-    <!-- END MODERN CSS-->
-    <!-- BEGIN Page Level CSS-->
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('assets/admin/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/core/colors/palette-gradient.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/fonts/simple-line-icons/style.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/core/colors/palette-gradient.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/pages/timeline.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/cryptocoins/cryptocoins.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/extensions/datedropper.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/extensions/timedropper.min.css')}}">
-    <!-- END Page Level CSS-->
-    <!-- BEGIN Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/style-rtl.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/custom-rtl.css')}}">
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-
-    <!-- END Custom CSS-->
-    @notify_css
-    @yield('style')
-    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-        }
-    </style>
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{asset('assets/admin/dist/css/adminlte.min.css')}}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{{asset('assets/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{{asset('assets/admin/plugins/daterangepicker/daterangepicker.css')}}">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{asset('assets/admin/plugins/summernote/summernote-bs4.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('assets/front/css/control.css')}}">
 </head>
-<body class="vertical-layout vertical-menu 2-columns  @if(Request::is('admin/users/tickets/reply*')) chat-application @endif menu-expanded fixed-navbar"
-      data-open="click" data-menu="vertical-menu" data-col="2-columns">
-<!-- fixed-top-->
-@include('vendor.includes.header')
-<style>
-    .user-name {
-        margin-bottom: -0.erm;
-    }
-</style>
-<!-- ////////////////////////////////////////////////////////////////////////////-->
-@include('vendor.includes.sidebar')
-
-@yield('content')
-
-<!-- ////////////////////////////////////////////////////////////////////////////-->
-@include('vendor.includes.footer')
-@notify_js
-@notify_render
-
-<!-- BEGIN VENDOR JS-->
-
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="{{asset('assets/admin/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
-<!-- BEGIN VENDOR JS-->
-<script src="{{asset('assets/admin/vendors/js/tables/datatable/datatables.min.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('assets/admin/vendors/js/tables/datatable/dataTables.buttons.min.js')}}"
-        type="text/javascript"></script>
-
-<script src="{{asset('assets/admin/vendors/js/forms/toggle/bootstrap-switch.min.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('assets/admin/vendors/js/forms/toggle/bootstrap-checkbox.min.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('assets/admin/vendors/js/forms/toggle/switchery.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/admin/js/scripts/forms/switch.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/admin/vendors/js/forms/select/select2.full.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/admin/js/scripts/forms/select/form-select2.js')}}" type="text/javascript"></script>
-
-<!-- BEGIN PAGE VENDOR JS-->
-<script src="{{asset('assets/admin/vendors/js/charts/chart.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/admin/vendors/js/charts/echarts/echarts.js')}}" type="text/javascript"></script>
-
-<script src="{{asset('assets/admin/vendors/js/extensions/datedropper.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/admin/vendors/js/extensions/timedropper.min.js')}}" type="text/javascript"></script>
-
-<script src="{{asset('assets/admin/vendors/js/forms/icheck/icheck.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/admin/js/scripts/pages/chat-application.js')}}" type="text/javascript"></script>
-<!-- END PAGE VENDOR JS-->
-<!-- BEGIN MODERN JS-->
-<script src="{{asset('assets/admin/js/core/app-menu.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/admin/js/core/app.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/admin/js/scripts/customizer.js')}}" type="text/javascript"></script>
-<!-- END MODERN JS-->
-<!-- BEGIN PAGE LEVEL JS-->
-<script src="{{asset('assets/admin/js/scripts/pages/dashboard-crypto.js')}}" type="text/javascript"></script>
+<body class="hold-transition sidebar-mini layout-fixed"
+style="text-align: right">
 
 
-<script src="{{asset('assets/admin/js/scripts/tables/datatables/datatable-basic.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('assets/admin/js/scripts/extensions/date-time-dropper.js')}}" type="text/javascript"></script>
-<!-- END PAGE LEVEL JS-->
+    @yield('content')
 
-<script src="{{asset('assets/admin/js/scripts/forms/checkbox-radio.js')}}" type="text/javascript"></script>
 
-<script src="{{asset('assets/admin/js/scripts/modal/components-modal.js')}}" type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+
+<script src="{{asset('assets/admin/js/charts/chart-area-demo.js')}}"></script>
+
+<script src="{{asset('assets/admin/js/charts/chart-bar-demo.js')}}"></script>
+
+
+
+<script src="{{asset('assets/admin/plugins/jquery/jquery.min.js')}}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{{asset('assets/admin/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-    $('#meridians1').timeDropper({
-        meridians: true,
-        setCurrentTime: false
-    });
-    $('#meridians2').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians3').timeDropper({
-        meridians: true,
-        setCurrentTime: false
-    });
-    $('#meridians4').timeDropper({
-        meridians: true,
-        setCurrentTime: false
-    });
-    $('#meridians5').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians6').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians7').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians8').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians9').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians10').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians11').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians12').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians13').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians14').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
+  $.widget.bridge('uibutton', $.ui.button)
 </script>
-@yield('script')
+<!-- Bootstrap 4 -->
+<script src="{{asset('assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- ChartJS -->
+<script src="{{asset('assets/admin/plugins/chart.js/Chart.min.js')}}"></script>
+<!-- Sparkline -->
+<script src="{{asset('assets/admin/plugins/sparklines/sparkline.js')}}"></script>
+<!-- JQVMap -->
+<script src="{{asset('assets/admin/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+<script src="{{asset('assets/admin/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{{asset('assets/admin/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+<!-- daterangepicker -->
+<script src="{{asset('assets/admin/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('assets/admin/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{asset('assets/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+<!-- Summernote -->
+<script src="{{asset('assets/admin/plugins/summernote/summernote-bs4.min.js')}}"></script>
+<!-- overlayScrollbars -->
+<script src="{{asset('assets/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{asset('assets/admin/dist/js/adminlte.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{asset('assets/admin/dist/js/demo.js')}}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{asset('assets/admin/dist/js/pages/dashboard.js')}}"></script>
+
+
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

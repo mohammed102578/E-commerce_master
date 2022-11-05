@@ -13,6 +13,16 @@ use App\Models\MainCategory;
 use App\Http\Requests\user\Addcart;
 use Session;
 use DB;
+use Illuminate\Http\Request;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use Stripe\Error\Card;
+
+
+
+
+
+
+
 class mainpagenotloginController extends Controller
 {
 
@@ -225,14 +235,7 @@ return view('userNotlogin.viewaddcart', compact('cart','vendors','productcountad
 
 
 
-
-
-
-
-
-
-
-
+//================================================================================================
 
 
 
@@ -256,4 +259,56 @@ public function destroy($id)
 }
 
 
+
+
+
+
+
+//======================================================================
+public function checkCart($amount){
+    $session_id = Session::getId();
+    $vendors = Vendor::selection()->paginate(PAGINATION_COUNT);
+    $subcategories=SubCategory::selection()->active()->get();
+    $productcountaddcart=Cart::where('session_id',$session_id)->count();
+    $maincategories = MainCategory::where('translation_of', 0)->active()->get();
+    $productCount=Product::count();
+    $products=Product::selection();
+
+
+     $cart= Cart::where('session_id',$session_id)->selection()->get();
+    return view('user.checkout',compact('amount','cart','vendors','productcountaddcart','products','maincategories','subcategories','productCount'));
 }
+//======================================================================
+
+
+    public function charge(Request $request) {
+
+       //return dd($request->stripeToken);
+
+        $charge = Stripe::charges()->create([
+            'currency' => 'USD',
+            'source' => $request->stripeToken,
+            'amount'   => $request->amount,
+            'description' => ' Test from laravel new app'
+        ]);
+
+        $chargeId = $charge['id'];
+
+        if ($chargeId) {
+            // save order in orders table ...
+            // clearn cart
+
+            session()->forget('cart');
+            return redirect()->route('mainpagenotlogin.viewAddtocart')->with('success', " Payment was done. Thanks");
+        } else {
+            return redirect()->back();
+        }
+    }
+
+
+
+
+
+}
+
+

@@ -16,9 +16,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-define('PAGINATION_COUNT',10);
+define('PAGINATION_COUNT',15);
+
 Route::group(['namespace'=>'Admin','middleware'=>'auth:admin'], function () {
     Route::get('/','dashboardController@index')->name('admin.dashboard');
+
+    ############message##############################################
+    Route::post('create-messages','messageController@storeMessage') -> name('admin.messages');
+    Route::get('show-messages','messageController@showMessage') -> name('admin.show.messages');
+    Route::get('delete/{id}','messageController@destroy') -> name('admin.message.delete');
+############################end message
+    Route::get('notification.active','dashboardController@active')->name('notification.active');
 
     ############languages route###########
     Route::group(['prefix' => 'languages'], function () {
@@ -74,7 +82,8 @@ Route::group(['prefix' => 'Sub_Category'], function () {
 
 ######################### Begin vendors Routes ########################
     Route::group(['prefix' => 'vendors'], function () {
-        Route::get('/','VendorsController@index') -> name('admin.vendors');
+       // Route::get('/','VendorsController@index') -> name('admin.vendors');
+        Route::get('/', ['uses'=>'VendorsController@index', 'as'=>'admin.vendors']);
         Route::get('create','VendorsController@create') -> name('admin.vendors.create');
         Route::post('store','VendorsController@store') -> name('admin.vendors.store');
         Route::get('edit/{id}','VendorsController@edit') -> name('admin.vendors.edit');
@@ -94,9 +103,22 @@ Route::post('updatePassword/{id}','ProfileController@changePassword') -> name('a
 Route::get('logout', 'LoginController@logout')->name('admin.logout');
 });
 
-####################bend admin route##############################################
+
+
+
+
+
+
+####################begin user route##############################################
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/','userController@index') -> name('admin.user');
+    Route::get('delete/{id}','userController@destroy') -> name('admin.user.delete');
+
+    });
+####################end admin route##############################################
 
 });
+
 
 
 

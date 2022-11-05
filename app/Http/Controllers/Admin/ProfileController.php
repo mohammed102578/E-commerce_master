@@ -9,12 +9,38 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use DB;
+use App\Models\Message;
+use App\Models\Notification;
+use App\Models\Vendor;
 class ProfileController extends Controller
 {
 
     public function index(){
 
-return view('admin.Profile');
+
+//message
+
+$messageCount=Message::select()->where('type','vendor')->get()->count();
+
+
+ $message=Message::select()->where('type','vendor')->get();
+
+
+
+ //Notification
+
+ $notification=Notification::select()->where('type','admin')->where('active',0)->get();
+
+
+ $notificationCount=Notification::select()->where('type','admin')->where('active',0)->get()->count();
+
+
+
+
+//return all vendor
+
+$allVendor=Vendor::select()->get();
+return view('admin.Profile',compact('message','allVendor','messageCount','notification','notificationCount'));
     }
 
     public function edit($id){
@@ -23,10 +49,31 @@ return view('admin.Profile');
         try {
 
             $admin = Admin::Selection()->find($id);
+
+
+//message
+$messageCount=Message::select()->where('type','vendor')->get()->count();
+
+ $message=Message::select()->where('type','vendor')->get();
+
+
+
+ //Notification
+
+ $notification=Notification::select()->where('type','admin')->where('active',0)->get();
+
+
+ $notificationCount=Notification::select()->where('type','admin')->where('active',0)->get()->count();
+
+
+
+            //return all vendor
+
+$allVendor=Vendor::select()->get();
             if (!$admin)
                 return redirect()->route('admin.dashboard')->with(['error' => 'هذا المتجر غير موجود او ربما يكون محذوفا ']);
 
-                return view('admin.admin.editProfile');
+                return view('admin.admin.editProfile',compact('message','allVendor','messageCount','notification','notificationCount'));
 
         } catch (\Exception $exception) {
             return redirect()->route('admin.vendors')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
@@ -36,6 +83,8 @@ return view('admin.Profile');
     }
 
     public function update(AdminDetRequest $request,$id){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
         $admin = Admin::Selection()->find($id);
         if (!$admin)
             return redirect()->route('admin.dashboard')->with(['error' => 'هذا المتجر غير موجود او ربما يكون محذوفا ']);
@@ -68,10 +117,14 @@ try{
             DB::rollback();
             return redirect()->route('admin.dashboard')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
+        }else{
+            return redirect()->route('admin.dashboard');
+        }
     }
 
 
     public function changePassword(AdminChPassRequest $request,$id){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         $admin = Admin::Selection()->find($id);
         if (!$admin)
@@ -105,6 +158,9 @@ return $exception;
 DB::rollback();
 return redirect()->route('admin.dashboard')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
 }
+        }else{
+            return redirect()->route('admin.dashboard');
+        }
 }
 
 

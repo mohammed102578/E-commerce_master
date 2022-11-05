@@ -25,16 +25,17 @@ class VendorDetRequest  extends FormRequest
         return [
             'email' => 'required_without:id|email',
             'name' => 'required_without:id|string|min:2|max:30',
-            'mobile'=>'required_without:id|digits:10',
+            'mobile'=>'required_without:id',
             'address'=>'required|string|min:2|max:100',
             'logo'=>'required_without:id|mimes:jpg,jpeg,png',
+            'city'=>'required'
         ];
     }
 
     public function messages()
     {
         return [
-
+            'city.required'=>'المدينة مطلوبة',
             'name.string' => ' الاسم يجب ان يكون حروف فقط.',
             'email.email' => 'ادخل عنوان بريد إلكتروني صالح.',
             'mobile.digits' => '  يجب ان يكون رقم الهاتف ارقام فقط.',

@@ -186,7 +186,7 @@ font-color:red"><?php echo $taotal?>&nbsp;SD£ </span>
 
 <div class="checkout cart-detailed-actions">
   <div class="text-xs-center">
-<a href="http://demo.bestprestashoptheme.com/savemart/ar/طلب شراء" class="btn btn-primary">اتمام الطلب</a>
+<a href="{{ route('check_out_cart',$taotal) }}" class="btn btn-primary">اتمام الطلب</a>
 
 </div>
 </div>

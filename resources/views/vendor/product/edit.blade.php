@@ -1,36 +1,27 @@
-@extends('vendor.layouts.vendor')
-
+@extends('layouts.vendor')
 @section('content')
+<style>
+    @import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+    * {
+        font-family: 'Lateef', serif;
+    }
 
+
+</style>
     <div class="app-content content">
         <div class="content-wrapper">
-            <div class="content-header row">
-                <div class="content-header-left col-md-6 col-12 mb-2">
-                    <div class="row breadcrumbs-top">
-                        <div class="breadcrumb-wrapper col-12">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="">الرئيسية </a>
-                                </li>
-                                <li class="breadcrumb-item"><a href=""> المنتجات </a>
-                                </li>
-                                <li class="breadcrumb-item active">تعديل منتج
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="content-body">
                 <!-- Basic form layout section start -->
                 <section id="basic-form-layouts">
                     <div class="row match-height">
                         <div class="col-md-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form">تعديل منتج  </h4>
+                                <div class="card-header bg-dark text-white">
+                                    <h4 class="card-title float-right"style="color:white;font-size:20px;font-family: 'Lateef', serif;" id="basic-layout-form">تعديل منتج  </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
-                                    <div class="heading-elements">
+                                    <div class="heading-elements" style="top:13px">
                                         <ul class="list-inline mb-0">
                                             <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
                                             <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
@@ -43,6 +34,14 @@
                                 @include('admin.includes.alerts.errors')
                                 <div class="card-content collapse show">
                                     <div class="card-body">
+
+
+
+
+
+
+
+
 
 
                                         <form class="form" action="{{route('vendor.Product.update',$product->id )}}"
@@ -66,7 +65,7 @@
 
                                                 </div>
                                                 <div class="form-group">
-                                                    <label> صوره المنتج </label>
+                                                    <label class="float-right"> صوره المنتج </label>
                                                     <input type="hidden" value="{{Auth::guard('vendor')->user()->id}}" name="vendor_id">
                                                 <div class="input-group control-group increment" >
                                                     <input type="file" name="photo[]" >
@@ -91,13 +90,11 @@
 
                                             <div class="form-body">
 
-                                                <h4 class="form-section"><i class="ft-home"></i> بيانات المنتج </h4>
-
 
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput1"> اسم المنتج  </label>
+                                                                    <label  class="float-right" for="projectinput1"> اسم المنتج  </label>
                                                                     <input type="text" value="{{ $product->title }}" id="title"
                                                                            class="form-control"
                                                                            placeholder="  "
@@ -112,7 +109,7 @@
 
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput1"> سعر المنتج  </label>
+                                                                    <label class="float-right" for="projectinput1"> سعر المنتج  </label>
                                                                     <input type="text" value="{{ $product->price }}"id="price"
                                                                            class="form-control"
                                                                            placeholder="  "
@@ -135,7 +132,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput1"> وصف المنتج  </label>
+                                                                    <label class="float-right" for="projectinput1"> وصف المنتج  </label>
                                                                     <textarea class="form-control" id="exampleFormControlTextarea1"  name="description" rows="3" >{{ $product->description }}</textarea>
 
                                                                     @error("description")
@@ -148,7 +145,7 @@
 
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput1"> الخصم على المنتج  </label>
+                                                                    <label class="float-right" for="projectinput1"> الخصم على المنتج  </label>
                                                                     <input type="integer" value="{{ $product->discount }}" id="discount"
                                                                            class="form-control"
                                                                            placeholder="  "
@@ -170,7 +167,7 @@
 
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput2"> أختر القسم </label>
+                                                                    <label class="float-right" for="projectinput2"> أختر القسم </label>
                                                                     <select name="category_id" class="select2 form-control">
                                                                         <optgroup label="من فضلك أختر القسم ">
                                                                             @if($subcategories && $subcategories -> count() > 0)
@@ -196,7 +193,7 @@
 
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput2"> أختر الكمية </label>
+                                                                    <label class="float-right" for="projectinput2"> أختر الكمية </label>
                                                                     <select name="stock" class="select2 form-control">
                                                                         <optgroup label="من فضلك أختر الكمية ">
                                                                             @for($i = 1; $i < 200; $i++)
@@ -229,15 +226,19 @@
                                                                            name="active"
                                                                            id="switcheryColor4"
                                                                            class="switchery" data-color="success"
-                                                                           {{ @if ($product->active==1)
-                                                                               checked
-                                                                           @else
 
-                                                                           @endif
 
-                                                                        } }
+                                                                           @if ($product->active == 1)
+                                                                            checked
+                                                                        @else
+
+                                                                        @endif
+
+
+
                                                                            />
-                                                                    <label for="switcheryColor4"
+
+                                                                    <label class="float-right" for="switcheryColor4"
                                                                            class="card-title ml-1">الحالة  </label>
 
                                                                     @error("active")
@@ -255,6 +256,7 @@
                                                         onclick="history.back();">
                                                     <i class="ft-x"></i> تراجع
                                                 </button>
+
                                                 <button type="submit" class="btn btn-primary">
                                                     <i class="la la-check-square-o"></i> حفظ
                                                 </button>

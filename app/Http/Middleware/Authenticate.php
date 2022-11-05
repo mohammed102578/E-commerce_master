@@ -17,27 +17,27 @@ class Authenticate extends Middleware
     {
 
 
+        // if (!$request->expectsJson()) {
+        //     if (Request::is('admin/*'))
+        //         return route('admin.login');
+        //     else
+        //         return route('get.Admin.login');
+
+        // }
+
+
+
+        // if (!$request->expectsJson()) {
+        //     if (Request::is('vendor/*'))
+        //         return route('vendor.login');
+        //     else
+        //         return route('get.vendor.login');
+
+        // }
+
+
         if (!$request->expectsJson()) {
-            if (Request::is('admin/*'))
-                return route('admin.login');
-            else
-                return route('get.Admin.login');
-
-        }
-
-
-
-        if (!$request->expectsJson()) {
-            if (Request::is('vendor/*'))
-                return route('vendor.login');
-            else
-                return route('get.vendor.login');
-
-        }
-
-
-        if (!$request->expectsJson()) {
-            if (Request::is('e-commerce/*'))
+            if (Request::is('E-commerce/*'))
                 return route('user.login');
             else
                 return route('get.user.login');

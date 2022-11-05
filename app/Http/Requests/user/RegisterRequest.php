@@ -30,6 +30,7 @@ class RegisterRequest extends FormRequest
             'password' => ['required', 'string', 'min:4'],
             'confirmpassword' => 'required|required_with:password|same:password',
             'mobile'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:20|unique:users',
+            'city'=>['required'],
         ];
     }
 
@@ -50,6 +51,58 @@ class RegisterRequest extends FormRequest
             'confirmpassword.required' =>'تاكيد كلمة المرور مطلوب',
             'mobile.required' =>'رقم الهاتف مطلوب',
             'confirmpassword.same' =>'كلمة السر غير متطابقين',
+            'city.required' => 'المدينة مطلوب.',
         ];
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

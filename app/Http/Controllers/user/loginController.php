@@ -67,8 +67,7 @@ class loginController extends Controller
         }
 // check the user login
 public function login(LoginRequest $request){
-
-
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $remember_me = $request->has('remember_me') ? true : false;
 
@@ -80,7 +79,10 @@ public function login(LoginRequest $request){
         Session::flash('erorr_message', $message);
         return redirect()->back();
     }
+    }else{
+        return redirect()->back();
 
+    }
 }//login end
 
 

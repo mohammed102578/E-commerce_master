@@ -145,7 +145,7 @@ input{
 
                                     </span>
                                     <span class="span-size">
-                                        <a href="">
+                                        <a href="{{ route('forget.password.get') }}">
                                             {{ __('هل نسيت كلمة المرور؟') }}
                                         </a>
 
@@ -156,6 +156,32 @@ input{
 
                         </div>
                      </div>
+
+
+
+
+
+                     <div class="form-group row">
+                        <div class="col-md-12 ">
+                            <div class="form-check">
+
+
+
+
+
+                                <span class="span-size">
+                                    <a href="{{ route('user.register') }}">
+                                        {{ __('تسجيل جديد') }}
+                                    </a>
+
+
+                                </span>
+
+                        </div>
+
+                    </div>
+                 </div>
+
 
 
                         <div class="form-group row mb-0">

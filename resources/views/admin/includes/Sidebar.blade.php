@@ -2,11 +2,15 @@
 <html class="loading" lang="ar" data-textdirection="rtl">
 <head>
 <style>
-@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 
-.droid-arabic-kufi {
-  font-family: 'Droid Arabic Kufi', serif;
-}
+
+    @import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+    body {
+        font-family: 'Lateef', serif;
+         font-size:18px;
+    }
+
+
 </style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,41 +84,40 @@
 
 <div class="main-menu menu-fixed menu-dark menu-accordion    menu-shadow " data-scroll-to-active="true">
     <div class="main-menu-content">
-        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+        <ul style="font-family:'Lateef', serif;font-size:18px" class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-            <li class="nav-item active"><a href="{{ route('admin.dashboard') }}"><i class="la la-mouse-pointer"></i><span
-                        class="menu-title" data-i18n="nav.add_on_drag_drop.main">الرئيسية </span></a>
+            <li class="nav-item active"><a href="{{ route('admin.dashboard') }}"><i class="la la-home"></i><span
+                        class="menu-title" data-i18n="nav.add_on_drag_drop.main" style="font-family: 'Lateef', serif;font-size:15px" >الرئيسية </span></a>
             </li>
 
 
-
-            <li class="nav-item"><i class="la la-male"></i>
+            <li class="nav-item">  <i class="ion ion-bag"></i>
                 <span
                 class="badge badge badge-success badge-pill float-left mr-2">{{App\Models\Vendor::count()}}</span>
 
-                <span class="menu-title" data-i18n="nav.dash.main">المتاجر  </span>
+                <span class="menu-title" data-i18n="nav.dash.main" style="font-family: 'Lateef', serif;font-size:21px">المتاجر  </span>
 
             <ul class="menu-content">
                 <li class="active"><a class="menu-item" href="{{route("admin.vendors")}}"
-                                      data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                                      data-i18n="nav.dash.ecommerce" style="font-family: 'Lateef', serif;font-size:15px"> عرض الكل </a>
                 </li>
-                <li class="breadcrumb-item active"><a href="{{ route("admin.vendors.create") }}" data-i18n="nav.dash.crypto">أضافة
+                <li class="breadcrumb-item active"><a style="font-family: 'Lateef', serif;font-size:15px" href="{{ route("admin.vendors.create") }}" data-i18n="nav.dash.crypto">أضافة
                         متجر  </a>
                 </li>
             </ul>
         </li>
 
 
-        <li class="nav-item"><i class="la la-group"></i>
-            <span class="menu-title" data-i18n="nav.dash.main">الاقسام الرئيسيه </span>
+        <li class="nav-item">  <i class="ion ion-bag"></i>
+            <span class="menu-title" data-i18n="nav.dash.main" style="font-family: 'Lateef', serif;font-size:21px">الاقسام الرئيسيه </span>
             <span
                 class="badge badge badge-danger badge-pill float-left mr-2">{{App\Models\MainCategory::defaultCategory()->count()}}</span>
 
         <ul class="menu-content">
             <li class="active"><a class="menu-item" href="{{ route('admin.MainCategory') }}"
-                                  data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                                  data-i18n="nav.dash.ecommerce" style="font-family: 'Lateef', serif;font-size:15px"> عرض الكل </a>
             </li>
-            <li class="breadcrumb-item active"><a href="{{ route('admin.MainCategory.create') }}" data-i18n="nav.dash.crypto">أضافة
+            <li class="breadcrumb-item active"><a  style="font-family: 'Lateef', serif;font-size:15px" href="{{ route('admin.MainCategory.create') }}" data-i18n="nav.dash.crypto">أضافة
                      قسم جديد </a>
             </li>
         </ul>
@@ -122,16 +125,16 @@
 
 
 
-    <li class="nav-item"><i class="la la-group"></i>
-        <span class="menu-title" data-i18n="nav.dash.main">الاقسام الفرعية   </span>
+    <li class="nav-item "> <i class="ion ion-pie-graph"></i></i>
+        <span class="menu-title" data-i18n="nav.dash.main" style="font-family: 'Lateef', serif;font-size:21px">الاقسام الفرعية   </span>
         <span
             class="badge badge badge-danger badge-pill float-left mr-2">{{App\Models\SubCategory::count()}}</span>
 
     <ul class="menu-content">
         <li class="active"><a class="menu-item" href="{{ route('admin.SubCategory') }}"
-                              data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                              data-i18n="nav.dash.ecommerce" style="font-family: 'Lateef', serif;font-size:15px"> عرض الكل </a>
         </li>
-        <li class="breadcrumb-item active"><a  href="{{ route('admin.SubCategory.create') }}" data-i18n="nav.dash.crypto">أضافة
+        <li class="breadcrumb-item active"><a  style="font-family: 'Lateef', serif;font-size:15px" href="{{ route('admin.SubCategory.create') }}" data-i18n="nav.dash.crypto">أضافة
                 قسم فرعي جديد </a>
         </li>
     </ul>
@@ -140,33 +143,61 @@
 
 
 
-            <li class="nav-item  open ">
-                <a href=""><i class="la la-home"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">لغات الموقع </span>
+            <li class="nav-item  ">
+                <i class="la la-mouse-pointer"></i>
+
+                    <span class="menu-title" data-i18n="nav.dash.main" style="font-family: 'Lateef', serif;font-size:21px">لغات الموقع </span>
                     <span
                         class="badge badge badge-info badge-pill float-left mr-2">{{App\Models\language::count()}}</span>
-                </a>
+
                 <ul class="menu-content">
                     <li class="active"><a class="menu-item" href="{{ route('admin.languages') }}"
-                                          data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                                          data-i18n="nav.dash.ecommerce" style="font-family: 'Lateef', serif;font-size:15px"> عرض الكل </a>
                     </li>
 
 
-                     <li class="breadcrumb-item active"><a href="{{route('admin.languages.create')}}"> اختيار لغة جديدة</a>
+                     <li class="breadcrumb-item active"><a href="{{route('admin.languages.create')}}" style="font-family: 'Lateef', serif;font-size:15px"> اختيار لغة جديدة</a>
                     </li>
                 </ul>
             </li>
 
 
 
+            <li class="nav-item  ">
+                <i class="la la-male"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main" style="font-family: 'Lateef', serif;font-size:21px">المستخدمين  </span>
+                    <span
+                        class="badge badge badge-info badge-pill float-left mr-2">{{App\User::count()}}</span>
+
+                <ul class="menu-content">
+                    <li class="active"><a class="menu-item" href="{{ route('admin.user') }}"
+                                          data-i18n="nav.dash.ecommerce" style="font-family: 'Lateef', serif;font-size:15px"> عرض الكل </a>
+                    </li>
 
 
-            <li class="nav-item"><i class="la la-group"></i>
-                <span class="menu-title" data-i18n="nav.dash.main">المنتجات </span>
-                <span
-                    class="badge badge badge-danger badge-pill float-left mr-2">{{App\Models\SubCategory::count()}}</span>
+
+
+
+                    <li class="nav-item  ">
+                        <i class="la la-comment"></i>
+                            <span class="menu-title" data-i18n="nav.dash.main" style="font-family: 'Lateef', serif;font-size:21px">الرسائل  </span>
+                            <span
+                                class="badge badge badge-info badge-pill float-left mr-2">{{$messageCount}}</span>
+
+                        <ul class="menu-content">
+                            <li class="active"><a class="menu-item" href="{{ route('admin.show.messages') }}"
+                                                  data-i18n="nav.dash.ecommerce" style="font-family: 'Lateef', serif;font-size:15px"> عرض الكل </a>
+                            </li>
+
+
+
+
+
+
+
+
+                </ul>
             </li>
-
 
 
 

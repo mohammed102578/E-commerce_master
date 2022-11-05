@@ -1,33 +1,25 @@
+
 @extends('layouts.admin')
 
+<style>
+    @import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+    body {
+        font-family: 'Lateef', serif;
+    }
+
+</style>
 @section('content')
-    <div class="app-content content">
-        <div class="content-wrapper">
-            <div class="content-header row">
-                <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title"> اللغات </h3>
-                    <div class="row breadcrumbs-top">
-                        <div class="breadcrumb-wrapper col-12">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية</a>
-                                </li>
-                                <li class="breadcrumb-item active"><a href="{{route('admin.languages.create')}}"> اللغات</a>
-                                </li>
-                                <li class="breadcrumb-item active"><a href="{{route('admin.languages.create')}}"> اختيار لغة جديدة</a>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="app-content content">
+    <div class="content-wrapper">
+
             <div class="content-body">
                 <!-- DOM - jQuery events table -->
                 <section id="dom">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 ">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">جميع لغات الموقع </h4>
+                                    <h4 class="card-title" style="font-family:'Lateef', serif;font-size:25px">جميع اللغات </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -45,27 +37,42 @@
 
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
+
+
                                         <table
-                                            class="table display nowrap table-striped table-bordered ">
-                                            <thead>
+                                        class="table display nowrap table-striped table-bordered  table-light
+                                        table-responsive w-100 d-block d-md-table">
+                                            <thead class="thead-dark">
                                             <tr>
-                                                <th> الاسم</th>
-                                                <th>الاختصار</th>
-                                                <th>اتجاه</th>
-                                                <th>الحالة</th>
-                                                <th>الإجراءات</th>
+
+
+
+
+
+                                                <th style="font-family:'Lateef', serif;font-size:18px"> الاسم</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px">الاختصار</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px">اتجاه</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px">الحالة</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px">الإجراءات</th>
+
                                             </tr>
                                             </thead>
                                             <tbody>
 
-                                            @isset($languages)
+
+
+
+
+
+
+                                                @isset($languages)
                                                 @foreach($languages as $language)
                                                     <tr>
-                                                        <td>{{$language -> name}}</td>
-                                                        <td>{{$language -> abbr}}</td>
-                                                        <td>{{$language -> direction}}</td>
-                                                        <td>{{$language -> getActive()}}</td>
-                                                        <td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">{{$language -> name}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">{{$language -> abbr}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">{{$language -> direction}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">{{$language -> getActive()}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">
                                                             <div class="btn-group" role="group"
                                                                  aria-label="Basic example">
                                                                 <a href="{{route('admin.languages.edit',$language -> id)}}"
@@ -83,10 +90,14 @@
                                             @endisset
 
 
+
+
+
+
+
                                             </tbody>
                                         </table>
-                                        <div class="justify-content-center d-flex">
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -96,4 +107,21 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @endsection

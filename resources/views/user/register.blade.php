@@ -58,6 +58,12 @@ input{
     font-family: 'Lateef', serif;
 
 }
+select{
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.26);
+    height: 48px;
+    padding: 5px;
+
+}
 </style>
 <div class="container">
     <br>
@@ -166,6 +172,47 @@ input{
 
 
 
+
+
+
+                        <div class="form-group row">
+                            <div class="span-size  col-md-6">
+                                <i class="fa fa-phone-square"></i>
+                                                       <label for="city" class="col-form-label  text-md-right bold">{{ __(' المدينة الحالية ') }}</label>
+                           </div >
+                                                       <div class="col-md-12">
+
+
+                                                        <select name="city" class="form-control " style="font-size:13px;  height: 45px;
+                                                        padding: 5px;">
+                                                            <option selected>اختر المدينة من هنا</option>
+                                                            <option>الخرطوم</option>
+                                                            <option>امدرمان</option>
+                                                            <option>كسلا</option>
+                                                            <option>بورتسودان </option>
+                                                            <option>القضارف</option>
+                                                            <option>الدمازين </option>
+                                                            <option>كوستي </option>
+                                                            <option>خرطوم بحري </option>
+                                                            <option>عطبرة</option>
+                                                            <option>دنقلا</option>
+                                                            <option>كادوقلي</option>
+                                                            <option>الابيض</option>
+                                                            <option>الفولة</option>
+                                                            <option>الفاشر</option>
+                                                            <option>نيالا</option>
+                                                            <option>الجنينة</option>
+                                                            <option>زالنجي</option>
+                                                            <option>الضعين</option>
+                                                        </select>
+                                                           <label for="city" class="col-form-label error m-0 text-danger text-md-right bold"></label>
+                                                           @error('city')
+                                                           <span class="text-danger">
+                                                                   <strong>{{ $message }}</strong>
+                                                               </span>
+                                                           @enderror
+                                                       </div>
+                                                   </div>
 
 
 

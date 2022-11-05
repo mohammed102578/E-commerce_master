@@ -66,7 +66,7 @@
         @foreach ( $photo as $photos )
         <div dir="rtl" class="item thumb-container col-md-6 col-xs-12 pt-30">
             <img class="img-fluid thumb js-thumb  selected "
-             src="http://localhost/e-commerce/assets/<?php $photos=str_replace('http://localhost/e-commerce/assets/',"",$photos)?>{{  $photos }}" alt="" title="" itemprop="image">
+             src="http://localhost/E-commerce/assets/<?php $photos=str_replace('http://localhost/E-commerce/assets/',"",$photos)?>{{  $photos }}" alt="" title="" itemprop="image">
           </div>
         @endforeach
 
@@ -480,7 +480,7 @@
     البلوتوث يأتي بإصدار 5.0 مع دعمه لخاصيتي الـ A2DP, LE .
     الواي فاي يأتي بترددات الـ b/g/n مع دعمه لخاصيتي الـ Wi-Fi Direct, hotspot .
     يدعم تحديد الموقع الجغرافي الـ GPS مع دعمه لأنظمة الملاحة الأخرى مثل الـ A-GPS, GLONASS, GALILEO, BDS ..</p>
-  <div class="image-des"><a href="#"><img class="img-fluid"src="http://localhost/e-commerce/assets/{{ $photo[1] }}"  alt="#"></a></div>
+  <div class="image-des"><a href="#"><img class="img-fluid"src="http://localhost/E-commerce/assets/{{ $photo[1] }}"  alt="#"></a></div>
   <p>وسائل الأمان والحماية الموجودة بالهاتف : يدعم الهاتف مستشعر البصمة ويأتي مدمج بزر الباور بالإضافة إلى دعمه لخاصية الـ Face Unlock .
     كما يدعم المستشعرات الأخرى مثل التسارع والقرب .
     يدعم منفذ الـ 3.5 ملم الخاص بسماعات الاذن .
@@ -591,7 +591,7 @@
               </button>
           </div>
           <div class="modal-body">
-              <form id="id_new_comment_form" action="{{ route('vendor.notification') }}">
+              <form id="id_new_comment_form" action="{{ route('user.messages') }}">
                                   <div class="product row no-gutters">
                       <div class="product-image col-4">
                           <img class="img-fluid" src="{{ $photo[0] }}" alt="Lorem ipsum dolor sit amet ege" width="" height="">
@@ -627,7 +627,7 @@
                       <input id="comment_title" name="title" type="text" value="">
 
                       <label for="content" class="latief" style="font-size: 20px;">رأيك<sup class="required">*</sup></label>
-                      <textarea id="content" name="content"></textarea>
+                      <textarea id="content" name="message"></textarea>
 
                                           <label class="latief" style="font-size: 20px;">اسمك<sup class="required">*</sup></label>
                       <input id="commentCustomerName" name="customer_name" type="text" value="">
@@ -636,7 +636,7 @@
                           <input id="id_product_comment_send" name="id_product" type="hidden" value="2">
                           <div class="fl"><sup class="required">*</sup> Required fields</div>
                           <div class="fr">
-                              <button id="submitNewMessage" data-dismiss="modal" aria-label="Close" class="btn btn-primary " name="submitMessage" type="submit"><span class="latief">ارسل</span></button>
+                              <button id="" data-dismiss="modal" aria-label="Close" class="btn btn-primary " name="submitMessage" type="submit"><span class="latief">ارسل</span></button>
                           </div>
                       </div>
                   </div>
@@ -724,7 +724,7 @@
 
                                                                     <a href="{{ route('mainpage.product_page',$Newproduct->id) }}" class="thumbnail product-thumbnail two-image">
                                                     <img class="img-fluid image-cover" src="{{ $photo[0] }}" alt="" data-full-size-image-url="http://demo.bestprestashoptheme.com/savemart/24-large_default/hummingbird-printed-t-shirt.jpg" width="600" height="600">
-                                                    <img class="img-fluid image-secondary" src="http://localhost/e-commerce/assets/{{ $photo[1] }}" alt="" data-full-size-image-url="http://demo.bestprestashoptheme.com/savemart/25-large_default/hummingbird-printed-t-shirt.jpg" width="600" height="600">
+                                                    <img class="img-fluid image-secondary" src="http://localhost/E-commerce/assets/{{ $photo[1] }}" alt="" data-full-size-image-url="http://demo.bestprestashoptheme.com/savemart/25-large_default/hummingbird-printed-t-shirt.jpg" width="600" height="600">
                                                                         </a>
 
                                                                 </div>
@@ -1047,7 +1047,7 @@
 
                                              <a href="{{ route('mainpage.product_page',$Trendproduct->id) }}" class="thumbnail product-thumbnail two-image">
                              <img class="img-fluid image-cover" src="{{ $photo[0] }}" alt="" data-full-size-image-url="http://demo.bestprestashoptheme.com/savemart/24-large_default/hummingbird-printed-t-shirt.jpg" width="600" height="600">
-                             <img class="img-fluid image-secondary" src="http://localhost/e-commerce/assets/{{ $photo[1] }}" alt="" data-full-size-image-url="http://demo.bestprestashoptheme.com/savemart/25-large_default/hummingbird-printed-t-shirt.jpg" width="600" height="600">
+                             <img class="img-fluid image-secondary" src="http://localhost/E-commerce/assets/{{ $photo[1] }}" alt="" data-full-size-image-url="http://demo.bestprestashoptheme.com/savemart/25-large_default/hummingbird-printed-t-shirt.jpg" width="600" height="600">
                                                  </a>
 
                                          </div>
@@ -1887,7 +1887,7 @@
 
                                                             <a href="{{ route('mainpage.product_page',$relateproduct->id) }}" class="thumbnail product-thumbnail two-image">
                                             <img class="img-fluid image-cover" src="{{ $photo[0] }}" alt="" data-full-size-image-url="http://demo.bestprestashoptheme.com/savemart/24-large_default/hummingbird-printed-t-shirt.jpg" width="600" height="600">
-                                            <img class="img-fluid image-secondary" src="http://localhost/e-commerce/assets/{{ $photo[1] }}" alt="" data-full-size-image-url="http://demo.bestprestashoptheme.com/savemart/25-large_default/hummingbird-printed-t-shirt.jpg" width="600" height="600">
+                                            <img class="img-fluid image-secondary" src="http://localhost/E-commerce/assets/{{ $photo[1] }}" alt="" data-full-size-image-url="http://demo.bestprestashoptheme.com/savemart/25-large_default/hummingbird-printed-t-shirt.jpg" width="600" height="600">
                                                                 </a>
 
 

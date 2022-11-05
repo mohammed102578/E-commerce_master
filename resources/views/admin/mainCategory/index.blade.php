@@ -1,60 +1,50 @@
 @extends('layouts.admin')
 
 @section('content')
+<style>
+    *{
+    font-family:'Lateef', serif;
+    font-size:18px;
+    }
+
+
+    </style>
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
-                <div class="content-header-left col-md-6 col-12 mb-2">
+                <div class="content-header-left col-md-6 col-sm-12 mb-2">
                     <h3 class="content-header-title"> الاقسام الرئيسية </h3>
-                    <div class="row breadcrumbs-top">
-                        <div class="breadcrumb-wrapper col-12">
-                            <ol class="breadcrumb">
-                                </li>
-                                <li class="breadcrumb-item active"><a href="{{route('admin.languages.create')}}">الاقسام الرئيسية</a>
-                                </li>
-                                <li class="breadcrumb-item active"><a href="{{route('admin.languages.create')}}"></a>اختيار قسم جديد</a>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div class="content-body">
                 <!-- DOM - jQuery events table -->
                 <section id="dom">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-sm-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">جميع اقسام الموقع </h4>
-                                    <a class="heading-elements-toggle"><i
-                                            class="la la-ellipsis-v font-medium-3"></i></a>
-                                    <div class="heading-elements">
-                                        <ul class="list-inline mb-0">
-                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+
 
                                 @include('admin.includes.alerts.success')
                                 @include('admin.includes.alerts.errors')
 
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
+                                        <div >
                                         <table
-                                            class="table display nowrap table-striped table-bordered ">
-                                            <thead>
+                                        class="table display nowrap table-striped table-bordered  table-light
+                                        table-responsive w-100 d-block d-md-table">
+
+
+                                        <thead class="thead-dark">
                                             <tr>
-                                                <th> الاسم</th>
-                                                <th> الصورة</th>
-                                                <th>اللغة</th>
-                                                <th>الحالة</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px"> الاسم</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px"> الصورة</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px">اللغة</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px">الحالة</th>
 
 
-                                                <th>الإجراءات</th>
+                                                <th style="font-family:'Lateef', serif;font-size:18px">الإجراءات</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -62,13 +52,13 @@
                                             @isset($categories)
                                                 @foreach($categories as $category)
                                                     <tr>
-                                                        <td>{{$category -> name}}</td>
-                                                        <td><img style="width: 180px; height: 100px;"
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">{{$category -> name}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px"><img style="width: 180px; height: 100px;"
                                                             src="{{$category -> photo}}"></td>
-                                                        <td>{{$category -> translation_lang}}</td>
-                                                        <td>{{$category -> getActive()}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">{{$category -> translation_lang}}</td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">{{$category -> getActive()}}</td>
 
-                                                        <td>
+                                                        <td style="font-family:'Lateef', serif;font-size:18px">
                                                             <div class="btn-group" role="group"
                                                                  aria-label="Basic example">
                                                                 <a href="{{ route('admin.MainCategory.edit',$category-> id) }}"
@@ -103,7 +93,7 @@
 
                                             </tbody>
                                         </table>
-                                        <div class="justify-content-center d-flex">
+
                                         </div>
                                     </div>
                                 </div>
